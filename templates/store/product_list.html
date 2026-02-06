@@ -71,7 +71,7 @@
                 <img src="https://placehold.co/1980x700/5D2E86/FFD700?text={{ slide.title|default:'GWZ' }}" class="d-block w-100 hero-image" alt="{{ slide.title }}">
                 {% endif %}
             {% endif %}
-            <div class="carousel-caption d-none d-md-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
+            <div class="carousel-caption d-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
                 <h2 class="fw-bold text-warning">{{ slide.title }}</h2>
                 <p class="fs-5">{{ slide.subtitle }}</p>
             </div>
@@ -84,7 +84,7 @@
             {% else %}
             <img src="https://placehold.co/1980x700/cccccc/666666?text=Welcome+to+GWZ" class="hero-banner-img w-100 hero-image" alt="Hero Banner">
             {% endif %}
-            <div class="carousel-caption d-none d-md-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
+            <div class="carousel-caption d-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
                 <h2 class="fw-bold text-warning">{{ site_settings.hero_title }}</h2>
                 <p class="fs-5">{{ site_settings.hero_subtitle }}</p>
             </div>
