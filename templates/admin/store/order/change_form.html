@@ -1,0 +1,650 @@
+{% extends "admin/change_form.html" %}
+{% load static admin_modify i18n %}
+
+{% block content %}
+<!-- Custom Styles -->
+<style>
+    /* Layout */
+    .order-layout {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    .order-main {
+        flex: 1;
+        min-width: 0;
+    }
+    .order-sidebar {
+        width: 300px;
+        flex-shrink: 0;
+    }
+    .order-data-columns {
+        display: block; /* Stack vertically */
+        margin-bottom: 20px;
+    }
+    .data-col {
+        width: 100%;
+        margin-bottom: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        box-sizing: border-box; /* Ensure padding doesn't overflow width */
+    }
+    .data-col h3 {
+        margin: 0 0 15px 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    /* Postbox (Sidebar) */
+    .postbox {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    .postbox h3 {
+        margin: 0;
+        padding: 10px 15px;
+        border-bottom: 1px solid #eee;
+        background: #f8f9fa;
+        font-size: 14px;
+        color: #333;
+    }
+    .postbox .inside {
+        padding: 15px;
+    }
+
+    /* Fix: Limit Product Select Width in Inline */
+    .field-product {
+        max-width: 300px; /* Constrain the cell width */
+    }
+    .field-product select,
+    .field-product .select2-container {
+        max-width: 100% !important; /* Fit within the cell */
+        width: 100% !important;
+    }
+    
+    /* Ensure long text doesn't stretch the container */
+    .select2-selection__rendered {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+
+    /* Limit Input Widths in Main Order Form (General & Billing) */
+    .data-col input[type="text"],
+    .data-col input[type="email"],
+    .data-col select,
+    .data-col .select2-container,
+    .data-col textarea {
+        max-width: 400px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Specific adjustment for Date/Time fields to be smaller */
+    .data-col .vDateField, 
+    .data-col .vTimeField {
+        max-width: 150px !important;
+        width: auto !important;
+        display: inline-block;
+    }
+    
+    /* Ensure related widget wrapper doesn't break */
+    .data-col .related-widget-wrapper {
+        width: auto;
+        max-width: 100%;
+    }
+
+    /* Notes */
+    .order_notes {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .order_notes .note {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .order_notes .note:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .note p { margin: 0; }
+    .note .meta {
+        font-size: 12px;
+        color: #999;
+        margin-top: 5px;
+    }
+    .add_note {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .add_note textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+    .add_note_actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<div id="content-main">
+    {% block object-tools %}
+        {% if change %}{% if not is_popup %}
+        <ul class="object-tools">
+            {% block object-tools-items %}
+                {% change_form_object_tools %}
+            {% endblock %}
+        </ul>
+        {% endif %}{% endif %}
+    {% endblock %}
+
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}
+        {% block form_top %}{% endblock %}
+        
+        <div>
+            {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+            {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+            
+            {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+            
+            {% if errors %}
+                <p class="errornote">
+                {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+                </p>
+                {{ adminform.form.non_field_errors }}
+            {% endif %}
+
+            <div class="order-layout">
+                <!-- Main Content -->
+                <div class="order-main">
+                    <div class="order-data-columns">
+                        <!-- General -->
+                        <div class="data-col">
+                            <h3>{% trans "General" %}</h3>
+                            <div class="content">
+                                {% for fieldset in adminform %}
+                                    {% if 'box-general' in fieldset.classes %}
+                                        {% include "admin/includes/fieldset.html" %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Billing -->
+                        <div class="data-col">
+                            <h3>{% trans "Billing" %}</h3>
+                            <div class="content">
+                                {% for fieldset in adminform %}
+                                    {% if 'box-billing' in fieldset.classes %}
+                                        {% include "admin/includes/fieldset.html" %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Shipping -->
+                        <div class="data-col">
+                            <h3>{% trans "Shipping" %}</h3>
+                            <div class="content">
+                                {% for fieldset in adminform %}
+                                    {% if 'box-shipping' in fieldset.classes %}
+                                        {% include "admin/includes/fieldset.html" %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    {% block inline_field_sets %}
+                        {% for inline_admin_formset in inline_admin_formsets %}
+                            {% include inline_admin_formset.opts.template %}
+                        {% endfor %}
+                    {% endblock %}
+                </div>
+
+                <!-- Sidebar -->
+                <div class="order-sidebar">
+                    <!-- Customer History -->
+                    {% if customer_stats %}
+                    <div class="postbox">
+                        <h3>{% trans "Customer History" %}</h3>
+                        <div class="inside" style="font-size: 13px;">
+                            <div style="margin-bottom: 10px;">
+                                <strong style="display:block; color:#555;">{% trans "Total Orders" %}</strong>
+                                <span style="font-size: 16px;">{{ customer_stats.total_orders }}</span>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <strong style="display:block; color:#555;">{% trans "Total Revenue" %}</strong>
+                                <span style="font-size: 16px;">HK${{ customer_stats.total_spend|floatformat:2 }}</span>
+                            </div>
+                            <div>
+                                <strong style="display:block; color:#555;">{% trans "Average Order Value (AOV)" %}</strong>
+                                <span style="font-size: 16px;">HK${{ customer_stats.aov|floatformat:2 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Actions -->
+                    <div class="postbox">
+                        <h3>{% trans "Order Actions" %}</h3>
+                        <div class="inside">
+                             {% submit_row %}
+                        </div>
+                    </div>
+
+                    <!-- Order Notes -->
+                    {% if original %}
+                    <div class="postbox">
+                        <h3>{% trans "Order Notes" %}</h3>
+                        <div class="inside">
+                            <ul class="order_notes" id="notes-list">
+                                {% for note in order_notes %}
+                                <li class="note">
+                                    <div class="note_content">
+                                        <p>{{ note.message }}</p>
+                                    </div>
+                                    <p class="meta">
+                                        {{ note.created_at|date:"Y-m-d H:i" }} {% trans "by" %} 
+                                        {% if note.user %}{{ note.user.username }}{% else %}{% trans "System" %}{% endif %}
+                                        {% if note.is_customer_note %}<span style="color:#666;">{% trans "(Sent to Customer)" %}</span>{% endif %}
+                                        <a href="{% url 'admin:store_order_delete_note' note.id %}" class="delete_note" onclick="return confirm('{% trans "Are you sure?" %}');">{% trans "Delete Note" %}</a>
+                                    </p>
+                                </li>
+                                {% empty %}
+                                <li class="note" style="text-align:center; color:#999;">{% trans "No notes yet" %}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <div class="add_note">
+                                <h4>{% trans "Add Note" %}</h4>
+                                <textarea id="new_note_content" class="input-text" rows="3" placeholder="{% trans "Enter note..." %}"></textarea>
+                                <div class="add_note_actions">
+                                    <label>
+                                        <input type="checkbox" id="is_customer_note">
+                                        {% trans "Send to Customer" %}
+                                    </label>
+                                    <button type="button" class="button-primary add-note-btn" onclick="addOrderNote()">{% trans "Add" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Hidden Fields -->
+            {% block after_related_objects %}{% endblock %}
+            {% block admin_change_form_document_ready %}
+                <script id="django-admin-form-add-constants" src="{% static 'admin/js/change_form.js' %}" ...></script>
+            {% endblock %}
+        </div>
+    </form>
+</div>
+
+{% if original %}
+<script>
+    function addOrderNote() {
+        const content = document.getElementById('new_note_content').value;
+        const isCustomer = document.getElementById('is_customer_note').checked;
+        
+        if (!content) return;
+
+        // Create a hidden form to submit post request
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = "{% url 'admin:store_order_add_note' original.pk %}";
+        
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        form.appendChild(csrfInput);
+        
+        const contentInput = document.createElement('input');
+        contentInput.type = 'hidden';
+        contentInput.name = 'note_content';
+        contentInput.value = content;
+        form.appendChild(contentInput);
+
+        const typeInput = document.createElement('input');
+        typeInput.type = 'hidden';
+        typeInput.name = 'is_customer_note';
+        typeInput.value = isCustomer ? 'on' : 'off';
+        form.appendChild(typeInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+{% endif %}
+
+<!-- Auto-fill Script -->
+<script>
+        // Global wrapper to ensure we have access to jQuery
+        (function() {
+            // Priority: django.jQuery (for Admin widgets/Select2), then window.jQuery
+            var $ = django.jQuery || window.jQuery;
+            
+            if (!$) {
+                console.error('jQuery not found!');
+                return;
+            }
+
+            $(window).on('load', function() {
+                console.log('Order Admin: Auto-fill Script Loaded (v4 - django.jQuery priority)');
+                console.log('Using jQuery version:', $.fn.jquery);
+
+                // --- 1. Product Unit Price Auto-fill ---
+                // Function to fetch price for a specific row
+                function fetchProductPrice(row, productId) {
+                    if (!productId) return;
+                    
+                    var unitInput = row.find('input[name$="-unit_price"]');
+                    if (unitInput.length) {
+                        unitInput.css('opacity', '0.5');
+                        $.getJSON("/admin/store/order/get-product-details/" + productId + "/", function(data) {
+                            unitInput.css('opacity', '1');
+                            if (!data.error) {
+                                unitInput.val(data.effective_price);
+                                unitInput.css('background-color', '#d4edda');
+                                setTimeout(function() { unitInput.css('background-color', ''); }, 800);
+                                // Update subtotal immediately if quantity exists
+                                updateSubtotal(row);
+                            } else {
+                                alert('{% trans "Unable to get price: " %}' + data.error);
+                            }
+                        }).fail(function(jqXHR, textStatus, errorThrown) {
+                            unitInput.css('opacity', '1');
+                            alert('{% trans "Connection failed, unable to get price." %}\nStatus: ' + textStatus + '\nError: ' + errorThrown + '\n{% trans "Please check network or server logs." %}');
+                        });
+                    } else {
+                        console.warn('Unit price input not found in row');
+                    }
+                }
+
+                // Function to update subtotal locally
+                function updateSubtotal(row) {
+                    var unitPrice = parseFloat(row.find('input[name$="-unit_price"]').val()) || 0;
+                    var quantity = parseInt(row.find('input[name$="-quantity"]').val()) || 1; // Default to 1 if empty/invalid
+                    var subtotal = unitPrice * quantity;
+                    
+                    // Find the readonly subtotal field (usually a p or div inside td.field-subtotal)
+                    var subtotalField = row.find('.field-subtotal p, .field-subtotal div.readonly');
+                    if (subtotalField.length) {
+                        subtotalField.text(subtotal.toFixed(2));
+                        subtotalField.css('color', 'green');
+                    }
+                }
+
+                // Event Listener for Product Change
+                // Use a more generic selector that relies on the field name ending in '-product'
+                $(document.body).on('change select2:select', 'select[name$="-product"]', function(e) {
+                    // Safety check: Ignore if triggered by internal select2 processes to avoid loops
+                    if (e.target.className && e.target.className.indexOf('select2') !== -1 && e.type === 'change') return;
+
+                    var select = $(this);
+                    var productId = select.val();
+                    
+                    // Handle Select2 data structure
+                    if (e.type === 'select2:select' && e.params && e.params.data) {
+                        productId = e.params.data.id;
+                    }
+
+                    console.log('Product Selected:', productId);
+                    var row = select.closest('tr');
+                    fetchProductPrice(row, productId);
+                });
+
+                // Event Listener for Quantity or Price Change to update subtotal
+                $(document.body).on('input change', 'input[name$="-unit_price"], input[name$="-quantity"]', function() {
+                    var row = $(this).closest('tr');
+                    updateSubtotal(row);
+                });
+
+                // Add "Get Price" button to each row (Observer for dynamic rows)
+                function addGetPriceButtons() {
+                    // Select rows that have a unit_price field
+                    $('tr').each(function() {
+                        var row = $(this);
+                        var unitInput = row.find('input[name$="-unit_price"]');
+                        
+                        // Only proceed if we found a unit_price input and haven't added the button yet
+                        if (unitInput.length && row.find('.get-price-btn').length === 0) {
+                            var btn = $('<button type="button" class="button get-price-btn" style="margin-left:5px; padding:2px 5px; font-size:11px;" title="{% trans "Get Price" %}">$</button>');
+                            unitInput.after(btn);
+                            
+                            btn.on('click', function() {
+                                var row = $(this).closest('tr');
+                                var productId = null;
+                                var debugMsg = "";
+
+                                // Robust Strategy: Find the specific cell for 'product' field
+                                var productCell = row.find('.field-product');
+                                if (productCell.length) {
+                                    // Try to find the select element (standard Django Admin dropdown)
+                                    var select = productCell.find('select');
+                                    if (select.length) {
+                                        productId = select.val();
+                                        // debugMsg = "Found via .field-product select";
+                                    } else {
+                                        // Fallback: Try finding input (e.g. if using raw_id_fields)
+                                        var input = productCell.find('input').not('[type="hidden"]').first();
+                                        if (input.length) {
+                                            productId = input.val();
+                                            // debugMsg = "Found via .field-product input";
+                                        }
+                                    }
+                                }
+
+                                // Fallback Strategy: Look for any field ending in '-product'
+                                if (!productId) {
+                                    var genericField = row.find('[name$="-product"]');
+                                    if (genericField.length) {
+                                        productId = genericField.val();
+                                    }
+                                }
+
+                                if (!productId) {
+                                    // Debugging aid: Collect all field names in this row
+                                    var fieldNames = [];
+                                    row.find('select, input').each(function() {
+                                        var name = $(this).attr('name');
+                                        if (name) fieldNames.push(name);
+                                    });
+                                    
+                                    alert('{% trans "Unable to detect Product ID (Please select a product first)." %}\n\n' +
+                                          'Row Index: ' + row.index() + '\n' + 
+                                          'Found Fields: ' + fieldNames.join(', ') + '\n' + 
+                                          '{% trans "Please try refreshing the page." %}');
+                                    return;
+                                }
+                                fetchProductPrice(row, productId);
+                            });
+                        }
+                    });
+                }
+
+                // Run initially and set up observer
+                setTimeout(addGetPriceButtons, 1000);
+                
+                // Observer for adding new rows
+                var observer = new MutationObserver(function(mutations) {
+                    addGetPriceButtons();
+                });
+                
+                // Try multiple possible container IDs for better robustness
+                var inlineGroup = document.getElementById('items-group') || document.querySelector('.inline-group');
+                
+                if (inlineGroup) {
+                    observer.observe(inlineGroup, { childList: true, subtree: true });
+                } else {
+                    // Fallback if ID differs, observe body but throttle
+                    console.log('Inline group not found, falling back to interval');
+                    setInterval(addGetPriceButtons, 2000);
+                }
+
+                // --- 2. Customer Auto-fill ---
+                var userFieldSelector = '#id_user';
+                
+                // Function to handle user data fetch
+                function fetchUserData(userId, isManual) {
+                    if (!userId) {
+                        if (isManual) alert('{% trans "Please select a customer account first!" %}');
+                        return;
+                    }
+                    console.log('Fetching data for User ID:', userId);
+                    
+                    var fields = $('#id_customer_name, #id_email, #id_phone, #id_address');
+                    fields.css('opacity', '0.5');
+
+                    $.getJSON("/admin/store/order/get-user-details/" + userId + "/", function(data) {
+                        fields.css('opacity', '1');
+                        if (!data.error) {
+                            console.log('User Data Received:', data);
+                            var name = data.username || '';
+                            if (data.first_name || data.last_name) {
+                                name = ((data.first_name || '') + ' ' + (data.last_name || '')).trim();
+                            }
+                            $('#id_customer_name').val(name);
+                            $('#id_email').val(data.email);
+                            $('#id_phone').val(data.phone);
+                            $('#id_address').val(data.address);
+                            
+                            // Sync to Shipping Address Display (Readonly field)
+                            $('.field-shipping_address_display .readonly').text(data.address);
+
+                            fields.css('background-color', '#d4edda');
+                            setTimeout(function() { fields.css('background-color', ''); }, 800);
+                            
+                            if (isManual) {
+                                alert('{% trans "Customer data fetched successfully!" %}\n{% trans "Name" %}: ' + name);
+                            }
+                        } else {
+                             if (isManual) alert('{% trans "Unable to fetch data:" %} ' + data.error);
+                        }
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error("API Request Failed:", textStatus, errorThrown);
+                        fields.css('opacity', '1');
+                        if (isManual) alert('{% trans "Connection failed, please check network or server logs." %}\nStatus: ' + textStatus);
+                    });
+                }
+
+                // Add Manual Fetch Button
+                var manualBtn = $('<button type="button" class="button" style="margin-left:10px; background-color:#28a745; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">{% trans "Fetch Data Manually" %}</button>');
+                var userWrapper = $('.field-user .related-widget-wrapper');
+                if (userWrapper.length) {
+                    userWrapper.after(manualBtn);
+                } else {
+                    $('#id_user').after(manualBtn);
+                }
+                
+                manualBtn.on('click', function(e) {
+                    e.preventDefault();
+                    var userId = $('#id_user').val();
+                    fetchUserData(userId, true);
+                });
+                
+                // Real-time sync for Address field to Shipping Display
+                $('#id_address').on('input change', function() {
+                    $('.field-shipping_address_display .readonly').text($(this).val());
+                });
+
+                // Bind to standard change event
+                $(document).on('change', userFieldSelector, function() {
+                    console.log('User change event detected');
+                    fetchUserData($(this).val(), false);
+                });
+
+                // Bind to Select2 event specifically
+                $(document.body).on('select2:select', userFieldSelector, function(e) {
+                    console.log('User select2:select event detected');
+                    var data = e.params.data;
+                    fetchUserData(data.id, false);
+                });
+
+                // --- 3. Product Price Batch Update (Manual) ---
+                function updateAllPrices() {
+                    var selects = $('select[id^="id_items-"][id$="-product"]');
+                    var count = 0;
+                    
+                    if (selects.length === 0) {
+                        alert('{% trans "No order items found!" %}');
+                        return;
+                    }
+
+                    if (!confirm('{% trans "Are you sure you want to refresh all product prices? This will overwrite current unit prices." %}')) {
+                        return;
+                    }
+
+                    selects.each(function() {
+                        var select = $(this);
+                        var productId = select.val();
+                        
+                        if (productId) {
+                             var unitPriceId = select.attr('id').replace('-product', '-unit_price');
+                             var unitInput = $('#' + unitPriceId);
+                             
+                             // Fallback row search
+                             if (unitInput.length === 0) {
+                                 var row = select.closest('tr');
+                                 if (row.length) unitInput = row.find('input[name$="-unit_price"]');
+                             }
+
+                             if (unitInput.length) {
+                                 unitInput.css('opacity', '0.5');
+                                 $.getJSON("/admin/store/order/get-product-details/" + productId + "/", function(data) {
+                                     unitInput.css('opacity', '1');
+                                     if (!data.error) {
+                                         unitInput.val(data.effective_price);
+                                         unitInput.css('background-color', '#d4edda');
+                                         setTimeout(function() { unitInput.css('background-color', ''); }, 800);
+                                     }
+                                 });
+                                 count++;
+                             }
+                        }
+                    });
+                    
+                    if (count === 0) {
+                        alert('{% trans "Please select a product first!" %}');
+                    }
+                }
+
+                // Inject the button into the Order Items header
+                // We use a timeout to ensure DOM is fully ready for inlines
+                setTimeout(function() {
+                    var inlineHeader = null;
+                    $('h2').each(function() {
+                        if ($(this).text().indexOf('{% trans "Order Items" %}') !== -1 || $(this).text().indexOf('訂單項目') !== -1) {
+                            inlineHeader = $(this);
+                            return false; 
+                        }
+                    });
+
+                    if (inlineHeader && inlineHeader.length) {
+                        // Check if button already exists
+                        if (inlineHeader.find('.batch-price-btn').length === 0) {
+                            var btn = $('<button type="button" class="button batch-price-btn" style="margin-left:15px; background-color:#17a2b8; color:white; border:none; padding:4px 10px; border-radius:4px; cursor:pointer;">{% trans "Batch Update Prices" %}</button>');
+                            btn.on('click', updateAllPrices);
+                            inlineHeader.append(btn);
+                        }
+                    }
+                }, 500);
+
+            });
+        })();
+</script>
+{% endblock %}

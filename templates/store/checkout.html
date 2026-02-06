@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Checkout" %} - GWZ{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Left Column: Billing Details -->
+        <div class="col-md-7">
+            <h4 class="mb-4">{% trans "Billing Details" %}</h4>
+            <form method="post" id="checkout-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label">{% trans "First Name" %} *</label>
+                        <input type="text" name="customer_name" class="form-control" required value="{{ user_data.first_name|default:'' }}">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">{% trans "Last Name" %} *</label>
+                        <input type="text" name="last_name" class="form-control" value="{{ user_data.last_name|default:'' }}">
+                    </div>
+                    
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Company Name (Optional)" %}</label>
+                        <input type="text" name="company" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Country / Region" %} *</label>
+                        <select class="form-select" disabled>
+                            <option selected>{% trans "Hong Kong" %}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Street Address" %} *</label>
+                        <input type="text" name="address" class="form-control" placeholder="{% trans 'House number and street name' %}" required value="{{ user_data.address|default:'' }}">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="address2" class="form-control" placeholder="{% trans 'Apartment, suite, unit, etc. (optional)' %}">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Town / City" %} *</label>
+                        <input type="text" name="city" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "District" %} *</label>
+                        <select class="form-select" name="region">
+                            <option value="Kowloon" {% if user_data.region == 'Kowloon' %}selected{% endif %}>{% trans "Kowloon" %}</option>
+                            <option value="Hong Kong Island" {% if user_data.region == 'Hong Kong Island' %}selected{% endif %}>{% trans "Hong Kong Island" %}</option>
+                            <option value="New Territories" {% if user_data.region == 'New Territories' %}selected{% endif %}>{% trans "New Territories" %}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Phone" %} *</label>
+                        <input type="tel" name="phone" class="form-control" required value="{{ user_data.phone|default:'' }}">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Email Address" %} *</label>
+                        <input type="email" name="email" class="form-control" required value="{{ user_data.email|default:'' }}">
+                    </div>
+                    
+                    <div class="col-12">
+                        <label class="form-label">{% trans "Order Notes (Optional)" %}</label>
+                        <textarea name="notes" class="form-control" rows="3" placeholder="{% trans 'Notes about your order, e.g. special notes for delivery.' %}"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Column: Order Summary & Payment -->
+        <div class="col-md-5">
+            <!-- Coupon Form -->
+            <div class="mb-4">
+                <form action="{% url 'coupon_apply' %}" method="post" class="d-flex gap-2">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'checkout' %}">
+                    <input type="text" name="code" class="form-control" placeholder="{% trans 'Coupon code' %}">
+                    <button class="btn btn-secondary" type="submit">{% trans "Apply" %}</button>
+                </form>
+            </div>
+
+            <div class="card bg-light border-0 rounded-0 p-4">
+                <h4 class="mb-4">{% trans "Your Order" %}</h4>
+                
+                <table class="table table-borderless">
+                    <thead>
+                        <tr class="border-bottom">
+                            <th>{% trans "Product" %}</th>
+                            <th class="text-end">{% trans "Subtotal" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr class="border-bottom">
+                            <td>
+                                {{ item.name }} <strong class="mx-1">× {{ item.qty }}</strong>
+                            </td>
+                            <td class="text-end">HK${{ item.subtotal }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="border-bottom fw-bold">
+                            <td>{% trans "Subtotal" %}</td>
+                            <td class="text-end">HK${{ total }}</td>
+                        </tr>
+                        {% if discount > 0 %}
+                        <tr class="border-bottom text-danger fw-bold">
+                            <td>{% trans "Coupon:" %} {{ coupon.code }} <a href="{% url 'cart_view' %}" class="text-muted small ms-2 text-decoration-none">×</a></td>
+                            <td class="text-end">-HK${{ discount }}</td>
+                        </tr>
+                        {% endif %}
+                        <tr class="border-bottom fw-bold fs-5 text-danger">
+                            <td>{% trans "Total" %}</td>
+                            <td class="text-end">HK${{ grand_total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-4">
+                    <h5 class="mb-3">{% trans "Payment Method" %}</h5>
+                    {% for pm in payment_methods %}
+                    <div class="form-check mb-3 border-bottom pb-3">
+                        <input class="form-check-input" type="radio" name="payment_method" id="pm_{{ pm.id }}" value="{{ pm.id }}" data-code="{{ pm.code }}" form="checkout-form" {% if forloop.first %}checked{% endif %} onchange="togglePaymentDetails(this)">
+                        <label class="form-check-label fw-bold" for="pm_{{ pm.id }}">
+                            {{ pm.name }}
+                        </label>
+                        {% if pm.description %}
+                        <div class="text-muted small">{{ pm.description }}</div>
+                        {% endif %}
+                        
+                        <div class="payment-details mt-2 ps-3 {% if not forloop.first %}d-none{% endif %}" id="details_{{ pm.id }}">
+                            {% if pm.instructions %}
+                                <div class="alert alert-light border py-2 small mb-2">
+                                    {{ pm.instructions|safe }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if pm.requires_proof %}
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold text-danger">{% trans "Please upload payment proof (receipt)" %}</label>
+                                    <input type="file" name="payment_proof" class="form-control form-control-sm" form="checkout-form">
+                                </div>
+                            {% endif %}
+                            
+                            {% if pm.code == 'credit_card' %}
+                                <div class="border rounded p-3 bg-white">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="fw-bold">{% trans "Credit / Debit Card" %}</span>
+                                        <i class="fab fa-cc-visa fa-2x text-primary"></i>
+                                        <i class="fab fa-cc-mastercard fa-2x text-danger"></i>
+                                    </div>
+                                </div>
+                                <div class="row g-2 mt-2">
+                                    <div class="col-12">
+                                        <label class="form-label small">{% trans "Cardholder Name" %}</label>
+                                        <input type="text" name="cc_name" class="form-control form-control-sm" form="checkout-form" placeholder="{% trans 'e.g. CHEN TAI MAN' %}">
+                                    </div>
+                                    {% if stripe_public_key and stripe_client_secret %}
+                                        <div class="col-12">
+                                            <label class="form-label small">{% trans "Card Number" %}</label>
+                                            <div id="card-number" class="form-control form-control-sm"></div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label small">{% trans "Expiry Date" %}</label>
+                                            <div id="card-expiry" class="form-control form-control-sm"></div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label small">{% trans "CVC" %}</label>
+                                            <div id="card-cvc" class="form-control form-control-sm"></div>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-12">
+                                            {% if stripe_min_amount_warning %}
+                                                <div class="alert alert-warning small">
+                                                    {{ stripe_min_amount_warning }}<br>
+                                                    {% trans "Please add more items to use credit card payment, or choose another payment method." %}
+                                                </div>
+                                            {% else %}
+                                                <div class="alert alert-danger small">
+                                                    {% trans "Credit card payment is currently unavailable." %}
+                                                    {% if stripe_error %}
+                                                        <br><strong>{% trans "Error Details:" %}</strong> {{ stripe_error }}
+                                                        <div class="mt-2">
+                                                            <a href="." class="btn btn-sm btn-outline-danger">
+                                                                <i class="fas fa-sync-alt me-1"></i> {% trans "Reload page to retry" %}
+                                                            </a>
+                                                        </div>
+                                                    {% else %}
+                                                        {% trans "(System configuration error or missing keys). Please choose another payment method or contact support." %}
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-12">
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="checkbox" id="cc_save" name="cc_save" form="checkout-form">
+                                            <label class="form-check-label small" for="cc_save">
+                                                {% trans "Save payment information to my account for future purchases." %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="alert alert-warning">{% trans "No payment methods available, please contact administrator." %}</div>
+                    {% endfor %}
+
+                    {% if stripe_public_key and stripe_client_secret %}
+                    <script src="https://js.stripe.com/v3/"></script>
+                    <script>
+                    const stripe = Stripe('{{ stripe_public_key }}');
+                    const elements = stripe.elements();
+                    let cardNumber, cardExpiry, cardCvc;
+                    function mountStripeElements() {
+                        if (cardNumber) return;
+                        cardNumber = elements.create('cardNumber');
+                        cardExpiry = elements.create('cardExpiry');
+                        cardCvc = elements.create('cardCvc');
+                        cardNumber.mount('#card-number');
+                        cardExpiry.mount('#card-expiry');
+                        cardCvc.mount('#card-cvc');
+                    }
+                    </script>
+                    {% endif %}
+                    <script>
+                    function togglePaymentDetails(radio) {
+                        // Hide all details
+                        document.querySelectorAll('.payment-details').forEach(el => el.classList.add('d-none'));
+                        // Show selected
+                        const details = document.getElementById('details_' + radio.value);
+                        if (details) {
+                            details.classList.remove('d-none');
+                        }
+                        // If credit card selected, mount Stripe elements
+                        if (radio.dataset.code === 'credit_card') {
+                            if (typeof mountStripeElements === 'function') {
+                                mountStripeElements();
+                            }
+                        }
+                    }
+                    
+                    // Intercept submit for Stripe payment
+                    (function(){
+                        const form = document.getElementById('checkout-form');
+                        if (!form) return;
+                        form.addEventListener('submit', async function(e){
+                            const selected = document.querySelector('input[name="payment_method"]:checked');
+                            if (selected && selected.dataset.code === 'credit_card' && typeof stripe !== 'undefined') {
+                                e.preventDefault();
+                                // Confirm card payment
+                                const nameInput = document.querySelector('input[name="cc_name"]');
+                                const emailInput = document.querySelector('input[name="email"]');
+                                const phoneInput = document.querySelector('input[name="phone"]');
+                                const addressInput = document.querySelector('input[name="address"]');
+                                const address2Input = document.querySelector('input[name="address2"]');
+                                const cityInput = document.querySelector('input[name="city"]');
+                                const regionInput = document.querySelector('select[name="region"]');
+
+                                const result = await stripe.confirmCardPayment('{{ stripe_client_secret|default:"" }}', {
+                                    payment_method: {
+                                        card: cardNumber,
+                                        billing_details: { 
+                                            name: nameInput ? nameInput.value : '',
+                                            email: emailInput ? emailInput.value : '',
+                                            phone: phoneInput ? phoneInput.value : '',
+                                            address: {
+                                                line1: addressInput ? addressInput.value : '',
+                                                line2: address2Input ? address2Input.value : '',
+                                                city: cityInput ? cityInput.value : '',
+                                                state: regionInput ? regionInput.value : '',
+                                                country: 'HK'
+                                            }
+                                        }
+                                    }
+                                });
+                                if (result.error) {
+                                    alert(result.error.message || '{% trans "Credit card payment failed, please try again later" %}');
+                                    return;
+                                }
+                                if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+                                    let hidden = document.createElement('input');
+                                    hidden.type = 'hidden';
+                                    hidden.name = 'stripe_payment_intent';
+                                    hidden.value = result.paymentIntent.id;
+                                    form.appendChild(hidden);
+                                    form.submit();
+                                } else {
+                                    alert('{% trans "Payment not completed, please try again" %}');
+                                }
+                            }
+                        });
+                        // Mount if initial selection is credit card
+                        const initial = document.querySelector('input[name="payment_method"]:checked');
+                        if (initial && initial.dataset.code === 'credit_card') {
+                            if (typeof mountStripeElements === 'function') {
+                                mountStripeElements();
+                            }
+                        }
+                    })();
+                    </script>
+
+                    <p class="small text-muted mt-3">
+                        {% trans "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our" %} <a href="{% url 'page_detail' 'privacy' %}" target="_blank" class="text-danger">{% trans "privacy policy" %}</a>.
+                    </p>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="terms" required form="checkout-form">
+                        <label class="form-check-label small" for="terms">
+                            {% trans "I have read and agree to the website" %} <a href="{% url 'page_detail' 'terms' %}" target="_blank" class="text-danger">{% trans "terms and conditions" %}</a> *
+                        </label>
+                    </div>
+
+                    <button type="submit" form="checkout-form" class="btn btn-danger w-100 py-2 fw-bold">{% trans "Place Order" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

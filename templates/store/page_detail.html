@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ page.title }} - GWZ{% endblock %}
+{% block content %}
+<div class="bg-black text-white py-4 mb-5">
+    <div class="container text-center">
+        <h1 class="h2 fw-bold mb-1">{{ page.title }}</h1>
+        <p class="small text-uppercase mb-0 text-white-50">{% trans "HOME" %} / {{ page.title }}</p>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="bg-white p-4 rounded shadow-sm">
+                {{ page.content|safe }}
+
+                {% if page.slug == 'about-us' %}
+                <div class="mt-5 pt-4 border-top">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center text-md-start order-md-1 order-2">
+                            <h2 class="fw-bold mb-3" style="color: var(--primary-purple);">
+                                {% if site_settings.founder_intro_title %}
+                                    {{ site_settings.founder_intro_title }}
+                                {% else %}
+                                    {% trans "Extraordinary in the Ordinary" %}
+                                {% endif %}
+                            </h2>
+                            <p class="lead">
+                                {% if site_settings.founder_intro_text %}
+                                    {{ site_settings.founder_intro_text }}
+                                {% else %}
+                                    {% trans "Join Prince's culinary journey and enjoy the beautiful things in life!" %}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-6 text-center order-md-2 order-1 mb-4 mb-md-0">
+                            {% if site_settings.founder_image %}
+                            <img src="{{ site_settings.founder_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ site_settings.founder_name }}" style="max-height: 400px; width: auto;">
+                            {% else %}
+                            <!-- Placeholder for Founder Image -->
+                            <img src="https://placehold.co/400x600?text=Prince+Image" class="img-fluid rounded shadow-sm" alt="{% trans 'Prince' %}" style="max-height: 400px; width: auto; opacity: 0.5;">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'product_list' %}" class="btn btn-outline-dark">{% trans "Back to Home" %}</a>
+    </div>
+</div>
+{% endblock %}

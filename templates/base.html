@@ -1,0 +1,377 @@
+<!doctype html>
+{% load i18n %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}GWZ - Become a home cook with George{% endblock %}</title>
+  <!-- Favicon -->
+  {% load static %}
+  <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  {% if site_settings.facebook_pixel_id %}
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '{{ site_settings.facebook_pixel_id }}');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id={{ site_settings.facebook_pixel_id }}&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  {% endif %}
+
+  {% if site_settings.google_analytics_id %}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site_settings.google_analytics_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ site_settings.google_analytics_id }}');
+  </script>
+  {% endif %}
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar" style="background-color: {{ site_settings.top_bar_bg_color|default:'#F50057' }};">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="social-icons">
+        <a href="{{ site_settings.facebook_url|default:'#' }}"><i class="fab fa-facebook-f"></i></a>
+        <a href="{{ site_settings.instagram_url|default:'#' }}"><i class="fab fa-instagram"></i></a>
+        <a href="{{ site_settings.whatsapp_url|default:'#' }}"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="d-flex align-items-center">
+        <!-- Language Switcher (Desktop) - Removed -->
+
+
+        <span class="me-3"></span>
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="text-white ms-2"><i class="fas fa-user"></i> {{ user.username }}</a>
+            <form method="post" action="{% url 'logout' %}" class="d-inline ms-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link text-white p-0" style="font-size: 0.9rem;">{% trans "Logout" %}</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}"><i class="far fa-user"></i></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Logo & Mobile Menu Toggle -->
+        <div class="col-6 col-md-3 col-lg-3 d-flex align-items-center">
+          <!-- Mobile Menu Toggle (Visible < lg) -->
+          <button class="btn btn-link text-dark p-0 me-3 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenuOffcanvas" aria-controls="mobileMenuOffcanvas">
+            <i class="fas fa-bars fa-lg"></i>
+          </button>
+          
+          <a href="{% url 'product_list' %}" class="text-decoration-none">
+            <div class="d-flex align-items-center">
+               <!-- Logo -->
+               {% if site_settings.logo %}
+                 <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.site_name }}" style="max-height: 80px; width: auto;">
+               {% else %}
+                 <img src="{% static 'img/logo.png' %}" alt="GWZ Logo" style="max-height: 80px; width: auto;">
+               {% endif %}
+            </div>
+          </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="col-12 col-md-5 col-lg-5 order-3 order-md-2 mt-3 mt-md-0">
+          <form class="search-container" action="{% url 'product_list' %}" method="get">
+            <input type="text" name="q" class="search-input" placeholder="{% trans 'Search products' %}" value="{{ search_query|default:'' }}">
+            <select class="search-select d-none d-sm-block" name="category" onchange="this.form.submit()">
+              <option value="">{% trans "All Categories" %}</option>
+              {% for category in categories %}
+                <option value="{{ category.name }}" {% if current_category == category.name %}selected{% endif %}>{{ category.name }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Nav Links & Cart -->
+        <div class="col-6 col-md-4 col-lg-4 order-2 order-md-3">
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="nav-links d-none d-lg-flex">
+            <a href="{% url 'product_list' %}" class="{% if request.path == '/' %}active{% endif %}">{% if site_settings.menu_home_text %}{{ site_settings.menu_home_text }}{% else %}{% trans "Home" %}{% endif %}</a>
+            <a href="{% url 'page_detail' 'about-us' %}" class="{% if '/pages/about-us/' in request.path %}active{% endif %}">{% if site_settings.menu_about_text %}{{ site_settings.menu_about_text }}{% else %}{% trans "About Us" %}{% endif %}</a>
+            <a href="{% url 'shop' %}" class="{% if '/shop/' in request.path %}active{% endif %}">{% if site_settings.menu_store_text %}{{ site_settings.menu_store_text }}{% else %}{% trans "Store" %}{% endif %}</a>
+            <a href="{% url 'page_detail' 'blog' %}" class="{% if '/pages/blog/' in request.path %}active{% endif %}">{% if site_settings.menu_blog_text %}{{ site_settings.menu_blog_text }}{% else %}{% trans "Blog" %}{% endif %}</a>
+          </div>
+            <div class="header-icons ms-4">
+              <a href="#" class="cart-icon text-dark text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#shoppingCartOffcanvas" aria-controls="shoppingCartOffcanvas">
+                <i class="fas fa-shopping-basket fa-lg"></i>
+                <span class="cart-badge">{{ cart_item_count|default:0 }}</span>
+              </a>
+              <a href="{% url 'wishlist' %}" class="text-dark"><i class="far fa-heart fa-lg"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Offcanvas -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuOffcanvas" aria-labelledby="mobileMenuOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold" id="mobileMenuOffcanvasLabel">{% trans "Menu" %}</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="d-flex flex-column gap-3">
+        <!-- Language Switcher (Top of Menu) - Removed -->
+
+
+        <a href="{% url 'product_list' %}" class="text-dark text-decoration-none fs-5 {% if request.path == '/' %}fw-bold text-danger{% endif %}">{% if site_settings.menu_home_text %}{{ site_settings.menu_home_text }}{% else %}{% trans "Home" %}{% endif %}</a>
+        <a href="{% url 'page_detail' 'about-us' %}" class="text-dark text-decoration-none fs-5 {% if '/pages/about-us/' in request.path %}fw-bold text-danger{% endif %}">{% if site_settings.menu_about_text %}{{ site_settings.menu_about_text }}{% else %}{% trans "About Us" %}{% endif %}</a>
+        <a href="{% url 'shop' %}" class="text-dark text-decoration-none fs-5 {% if '/shop/' in request.path %}fw-bold text-danger{% endif %}">{% if site_settings.menu_store_text %}{{ site_settings.menu_store_text }}{% else %}{% trans "Store" %}{% endif %}</a>
+        <a href="{% url 'page_detail' 'blog' %}" class="text-dark text-decoration-none fs-5 {% if '/pages/blog/' in request.path %}fw-bold text-danger{% endif %}">{% if site_settings.menu_blog_text %}{{ site_settings.menu_blog_text }}{% else %}{% trans "Blog" %}{% endif %}</a>
+
+        <hr>
+        <div class="fw-bold mb-2">{% trans "Categories" %}</div>
+        {% for category in categories %}
+           <a href="{% url 'product_list' %}?category={{ category.name }}#shop-content" class="text-secondary text-decoration-none ms-3">{{ category.name }}</a>
+        {% endfor %}
+        <!-- Language Switcher (Bottom) - Removed -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Nav (Red Bar) - Removed as per request -->
+
+
+
+  <main>
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- About -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-warning">{{ site_settings.site_name|default:"GWZ" }}</h5>
+          <p>
+            {% trans "Beyond cooking, we invite you to see the world through George's eyes, sharing his experiences in travel, shopping, and different cultures." %}
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-warning">{% trans "Quick Links" %}</h5>
+          <p><a href="{% url 'product_list' %}" class="text-white text-decoration-none">{% if site_settings.menu_home_text %}{{ site_settings.menu_home_text }}{% else %}{% trans "Home" %}{% endif %}</a></p>
+          <p><a href="{% url 'page_detail' 'about-us' %}" class="text-white text-decoration-none">{% if site_settings.menu_about_text %}{{ site_settings.menu_about_text }}{% else %}{% trans "About Us" %}{% endif %}</a></p>
+          <p><a href="{% url 'product_list' %}" class="text-white text-decoration-none">{% trans "Latest Products" %}</a></p>
+          <p><a href="{% url 'contact' %}" class="text-white text-decoration-none">{% if site_settings.menu_contact_text %}{{ site_settings.menu_contact_text }}{% else %}{% trans "Contact Us" %}{% endif %}</a></p>
+          <p><a href="{% url 'page_detail' 'privacy' %}" class="text-white text-decoration-none">{% trans "Privacy Policy" %}</a></p>
+          <p><a href="{% url 'page_detail' 'terms' %}" class="text-white text-decoration-none">{% trans "Terms & Conditions" %}</a></p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-warning">{% trans "Contact Info" %}</h5>
+          <p><i class="fas fa-home mr-3"></i> {{ site_settings.contact_address|default:"Hong Kong" }}</p>
+          <p><i class="fas fa-envelope mr-3"></i> {{ site_settings.contact_email|default:"info@gwz.one" }}</p>
+          <p><i class="fas fa-phone mr-3"></i> {{ site_settings.contact_phone|default:"" }}</p>
+        </div>
+
+        <!-- Social -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+           <h5 class="text-uppercase mb-4 fw-bold text-warning">{% trans "Follow Us" %}</h5>
+           <div class="d-flex gap-3">
+             <a href="{{ site_settings.facebook_url|default:'#' }}" class="btn btn-outline-light btn-floating m-1 text-white" role="button"><i class="fab fa-facebook-f"></i></a>
+             <a href="{{ site_settings.instagram_url|default:'#' }}" class="btn btn-outline-light btn-floating m-1 text-white" role="button"><i class="fab fa-instagram"></i></a>
+           </div>
+        </div>
+      </div>
+
+      <hr class="mb-4">
+
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p>{{ site_settings.footer_copyright|default:"Copyright © 2026 GWZ. All rights reserved." }}</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Offcanvas -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingCartOffcanvas" aria-labelledby="shoppingCartOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold" id="shoppingCartOffcanvasLabel">{% trans "Shopping cart" %}</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      
+      <!-- Cart Items List -->
+      <div class="flex-grow-1 overflow-auto">
+        {% if cart_items %}
+          {% for item in cart_items %}
+          <div class="d-flex align-items-center mb-3 border-bottom pb-3">
+              <!-- Image -->
+              <div class="flex-shrink-0" style="width: 60px; height: 60px;">
+                  {% if item.image %}
+                      <img src="{{ item.image }}" alt="{{ item.name }}" class="img-fluid w-100 h-100 object-fit-contain">
+                  {% else %}
+                      <img src="https://placehold.co/60x60?text=No+Img" alt="No Image" class="img-fluid w-100 h-100 object-fit-contain">
+                  {% endif %}
+              </div>
+              <!-- Details -->
+              <div class="flex-grow-1 ms-3">
+                  <h6 class="mb-0 text-truncate" style="max-width: 150px;">{{ item.name }}</h6>
+                  <small>{{ item.qty }} x <span class="text-danger fw-bold">HK${{ item.price }}</span></small>
+              </div>
+              <!-- Remove Button -->
+              <div class="flex-shrink-0 ms-2">
+                  <a href="{% url 'cart_remove' item.id %}" class="text-muted text-decoration-none fs-5">&times;</a>
+              </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="text-center py-5">
+              <p class="text-muted">{% trans "Your cart is empty." %}</p>
+              <a href="{% url 'product_list' %}" class="btn btn-warning text-white">{% trans "Start Shopping" %}</a>
+          </div>
+        {% endif %}
+      </div>
+  
+      <!-- Footer Actions -->
+      {% if cart_items %}
+      <div class="mt-3 border-top pt-3">
+          <div class="d-flex justify-content-between mb-3">
+              <span class="fw-bold">{% trans "Subtotal:" %}</span>
+              <span class="fw-bold">HK${{ cart_total_price }}</span>
+          </div>
+          
+          <div class="d-grid gap-2">
+              
+              
+              <!-- View Cart (Light Gray) -->
+              <a href="{% url 'cart_view' %}" class="btn btn-light border">{% trans "View Cart" %}</a>
+              
+              <!-- Checkout (Red/Pink) -->
+              <a href="{% url 'checkout' %}" class="btn btn-danger text-white">{% trans "Checkout" %}</a>
+          </div>
+      </div>
+      {% endif %}
+  
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wishlist Functionality
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        wishlistButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent form submission if inside a form, or default link behavior
+                
+                const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+                if (!isAuthenticated) {
+                    window.location.href = "{% url 'login' %}?next={{ request.path }}";
+                    return;
+                }
+
+                const productId = this.dataset.productId;
+                const icon = this.querySelector('i');
+                const button = this;
+
+                fetch("{% url 'toggle_wishlist' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        if (data.is_wishlisted) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                        } else {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                            
+                            // If on wishlist page, remove the item
+                            if (window.location.pathname.includes('/wishlist/')) {
+                                const cardItem = button.closest('.col-12'); // Adjust selector based on grid
+                                if (cardItem) {
+                                    cardItem.remove();
+                                    // If no items left, reload to show empty state
+                                    const remainingItems = document.querySelectorAll('.wishlist-btn');
+                                    if (remainingItems.length === 0) {
+                                        window.location.reload();
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        console.error('Wishlist Error:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+  </script>
+</body>
+</html>

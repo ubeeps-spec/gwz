@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Contact Us" %} - GWZ{% endblock %}
+
+{% block content %}
+<!-- Page Title Banner -->
+<div class="bg-black text-white py-4 mb-5">
+    <div class="container">
+        <h1 class="h3 fw-bold">{% trans "Contact Us" %}</h1>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h3 class="mb-4 fw-bold">{% trans "Address:" %}</h3>
+            <p class="mb-4" style="font-size: 1.1rem; color: #666;">
+                {% if site_settings.contact_address %}{{ site_settings.contact_address }}{% else %}{% trans "Hong Kong" %}{% endif %}
+            </p>
+
+            <h3 class="mb-4 fw-bold">{% trans "Opening Hours:" %}</h3>
+            <p class="mb-4" style="font-size: 1.1rem; color: #666;">
+                {% if site_settings.contact_opening_hours %}{{ site_settings.contact_opening_hours }}{% else %}{% trans "Mon - Sun: 10:00AM - 10:00PM" %}{% endif %}
+            </p>
+
+            <h3 class="mb-4 fw-bold">{% trans "Enquiries:" %}</h3>
+            <div class="mb-4" style="font-size: 1.1rem; color: #666;">
+                <p class="mb-1">{% trans "Email:" %} {{ site_settings.contact_email|default:"info@gwz.one" }}</p>
+                <p class="mb-1">{% trans "Phone:" %} {{ site_settings.contact_phone|default:"" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

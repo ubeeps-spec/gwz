@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-02 10:46+0800\n"
+"PO-Revision-Date: 2026-02-02 10:48+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Traditional Chinese"
+msgstr "Traditional Chinese"
+
+msgid "English"
+msgstr "English"
+
+msgid "Welcome Call 66208132"
+msgstr "Welcome Call 66208132"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Search for products"
+msgstr "Search for products"
+
+msgid "All Categories"
+msgstr "All Categories"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Store"
+msgstr "Store"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Tutorial"
+msgstr "Tutorial"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Shopping cart"
+msgstr "Cart"
+
+msgid "Your cart is empty."
+msgstr "Your cart is empty."
+
+msgid "Start Shopping"
+msgstr "Start Shopping"
+
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+msgid "View Cart"
+msgstr "View Cart"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "My Account"
+msgstr "My Account"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Username or email address"
+msgstr "Username or email address"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Remember me"
+msgstr "Remember me"
+
+msgid "Lost your password?"
+msgstr "Lost your password?"
+
+msgid "Add to cart"
+msgstr "Add to cart"
+
+msgid "Pick your favorite"
+msgstr "Pick your favorite"
+
+msgid "High quality"
+msgstr "High quality"
+
+msgid "Quick Links"
+msgstr "Quick Links"
+
+msgid "About Us"
+msgstr "About Us"
+
+msgid "Latest Products"
+msgstr "Latest Products"
+
+msgid "Contact Info"
+msgstr "Contact Info"
+
+msgid "Follow Us"
+msgstr "Follow Us"
+
+msgid "Language"
+msgstr "Language"

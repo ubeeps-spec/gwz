@@ -1,0 +1,1219 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-06 10:00+0800\n"
+"PO-Revision-Date: 2026-02-06 10:00+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Traditional Chinese"
+msgstr "繁體中文"
+
+msgid "English"
+msgstr "英文"
+
+msgid "Welcome Call 66208132"
+msgstr "歡迎致電 66208132 訂購"
+
+msgid "Logout"
+msgstr "登出"
+
+msgid "Search for products"
+msgstr "搜尋產品"
+
+msgid "Search products"
+msgstr "搜尋產品"
+
+msgid "All Categories"
+msgstr "所有分類"
+
+msgid "Menu"
+msgstr "選單"
+
+msgid "Home"
+msgstr "主頁"
+
+msgid "Store"
+msgstr "商店"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "Contact"
+msgstr "聯絡我們"
+
+msgid "Contact Us"
+msgstr "聯絡我們"
+
+msgid "Tutorial"
+msgstr "購物流程教學"
+
+msgid "Categories"
+msgstr "分類"
+
+msgid "Shopping cart"
+msgstr "購物車"
+
+msgid "Shopping Cart"
+msgstr "購物車"
+
+msgid "Your cart is empty."
+msgstr "您的購物車是空的。"
+
+msgid "Start Shopping"
+msgstr "開始購物"
+
+msgid "Subtotal:"
+msgstr "小計:"
+
+msgid "View Cart"
+msgstr "查看購物車"
+
+msgid "Checkout"
+msgstr "結帳"
+
+msgid "Login"
+msgstr "登入"
+
+msgid "Register"
+msgstr "註冊"
+
+msgid "My Account"
+msgstr "我的帳戶"
+
+msgid "Account"
+msgstr "帳戶"
+
+msgid "Username or email address"
+msgstr "使用者名稱或電子郵件地址"
+
+msgid "Password"
+msgstr "密碼"
+
+msgid "Remember me"
+msgstr "記住我"
+
+msgid "Lost your password?"
+msgstr "忘記密碼？"
+
+msgid "Add to cart"
+msgstr "加入購物車"
+
+msgid "Pick your favorite"
+msgstr "挑選您喜愛的"
+
+msgid "High quality"
+msgstr "高品質"
+
+msgid "Quick Links"
+msgstr "快速連結"
+
+msgid "About Us"
+msgstr "關於我們"
+
+msgid "Latest Products"
+msgstr "最新產品"
+
+msgid "Contact Info"
+msgstr "聯絡資訊"
+
+msgid "Follow Us"
+msgstr "關注我們"
+
+msgid "Language"
+msgstr "語言"
+
+msgid "Username"
+msgstr "使用者名稱"
+
+msgid "Email"
+msgstr "電子郵件"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "First Name"
+msgstr "名字"
+
+msgid "Last Name"
+msgstr "姓氏"
+
+msgid "User Name"
+msgstr "使用者名稱"
+
+msgid "This email is already registered"
+msgstr "此電子郵件已被註冊"
+
+msgid "Log In"
+msgstr "登入"
+
+msgid "Username or Email"
+msgstr "使用者名稱或電子郵件"
+
+msgid ""
+"Registering for this site allows you to access your order status and "
+"history. Just fill in the fields below, and we'll get a new account set up "
+"for you in no time. We will only ask you for information necessary to make "
+"the purchase process faster and easier."
+msgstr "註冊此網站可讓您存取訂單狀態和歷史記錄。只需填寫以下欄位，我們將立即為您建立新帳戶。我們只會詢問您購買過程所需的信息。"
+
+msgid ""
+"Specializing in sales of major brand printers and consumables, providing "
+"professional after-sales service and technical support."
+msgstr "專營各大品牌打印機及耗材銷售，提供專業售後服務及技術支援。"
+
+msgid "123 Some Street, Some District, Kowloon, Hong Kong"
+msgstr "香港九龍某區某街道123號"
+
+msgid "Register Account"
+msgstr "註冊帳戶"
+
+msgid "Register New Account"
+msgstr "註冊新帳戶"
+
+msgid "Already have an account?"
+msgstr "已經有帳戶？"
+
+msgid "Log In Now"
+msgstr "立即登入"
+
+msgid "LOG IN"
+msgstr "登入"
+
+msgid "Product"
+msgstr "產品"
+
+msgid "Price"
+msgstr "價格"
+
+msgid "Quantity"
+msgstr "數量"
+
+msgid "Subtotal"
+msgstr "小計"
+
+msgid "Total"
+msgstr "總計"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "Continue Shopping"
+msgstr "繼續購物"
+
+msgid "Billing Details"
+msgstr "帳單資訊"
+
+msgid "Company Name (Optional)"
+msgstr "公司名稱 (選填)"
+
+msgid "Country / Region"
+msgstr "國家 / 地區"
+
+msgid "Hong Kong"
+msgstr "香港"
+
+msgid "Street Address"
+msgstr "街道地址"
+
+msgid "House number and street name"
+msgstr "門牌號碼和街道名稱"
+
+msgid "Apartment, suite, unit, etc. (optional)"
+msgstr "公寓、套房、單位等 (選填)"
+
+msgid "Town / City"
+msgstr "城鎮 / 城市"
+
+msgid "District"
+msgstr "地區"
+
+msgid "Kowloon"
+msgstr "九龍"
+
+msgid "Hong Kong Island"
+msgstr "香港島"
+
+msgid "New Territories"
+msgstr "新界"
+
+msgid "Email Address"
+msgstr "電子郵件地址"
+
+msgid "Order Notes (Optional)"
+msgstr "訂單備註 (選填)"
+
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "關於您的訂單的備註，例如運送特別說明。"
+
+msgid "Your Order"
+msgstr "您的訂單"
+
+msgid "Shipping"
+msgstr "運送資訊"
+
+msgid "Free Shipping"
+msgstr "免運費"
+
+msgid "Coupon Code"
+msgstr "優惠券代碼"
+
+msgid "Apply"
+msgstr "套用"
+
+msgid "Discount"
+msgstr "折扣"
+
+msgid "Place Order"
+msgstr "下訂單"
+
+msgid "Shopping Guide"
+msgstr "購物指南"
+
+msgid "Select Item / Color / Quantity"
+msgstr "選擇商品 / 顏色 / 數量"
+
+msgid "Register as Member"
+msgstr "註冊成為會員"
+
+msgid "Get Latest Offers"
+msgstr "獲取最新優惠"
+
+msgid "Shipping Method"
+msgstr "運送方式"
+
+msgid "Pickup / Express / Mail"
+msgstr "自取 / 快遞 / 郵寄"
+
+msgid "Payment Method"
+msgstr "付款方式"
+
+msgid "Bank Transfer / PayMe / FPS"
+msgstr "銀行轉帳 / PayMe / FPS"
+
+msgid "Receive Goods"
+msgstr "收貨"
+
+msgid "Wishlist"
+msgstr "我的最愛"
+
+msgid "Remove from Wishlist"
+msgstr "從我的最愛移除"
+
+msgid "View Details"
+msgstr "查看詳情"
+
+msgid "Go Shopping"
+msgstr "去購物"
+
+msgid "Featured Products"
+msgstr "精選產品"
+
+msgid "Lifestyle & Culture"
+msgstr "生活與文化"
+
+msgid ""
+"Beyond cooking, we invite you to see the world through George's eyes, "
+"sharing his experiences in travel, shopping, and different cultures."
+msgstr "除了烹飪，我們邀請您透過 George 的眼睛看世界，分享他在旅行、購物和不同文化中的經歷。"
+
+msgid "Address:"
+msgstr "地址:"
+
+msgid "Opening Hours:"
+msgstr "營業時間:"
+
+msgid "Enquiries:"
+msgstr "查詢:"
+
+msgid "Email:"
+msgstr "電郵:"
+
+msgid "Phone:"
+msgstr "電話:"
+
+msgid "Mon - Sun: 10:00AM - 10:00PM"
+msgstr "週一至週日: 10:00AM - 10:00PM"
+
+msgid ""
+"Prince has created a variety of seasonings to make your dishes flavorful."
+msgstr "王子創造了各種調味料，讓您的菜餚更加美味。"
+
+msgid "Featured Blog"
+msgstr "精選博客"
+
+msgid "Get inspiration from Prince's recipes and cooking videos"
+msgstr "從王子的食譜和烹飪影片中獲取靈感"
+
+msgid "Read More"
+msgstr "閱讀更多"
+
+msgid "Explore home cooking and recipes with Prince"
+msgstr "與王子一起探索家庭烹飪和食譜"
+
+msgid "Food Review"
+msgstr "美食評論"
+
+msgid "Like other food lovers, Prince loves trying new food..."
+msgstr "像其他美食愛好者一樣，王子喜歡嘗試新食物..."
+
+msgid "Explore More"
+msgstr "探索更多"
+
+msgid "New Recipes"
+msgstr "最新食譜"
+
+msgid "As a self-taught home cook, Prince has some tips..."
+msgstr "作為一位自學成才的家庭廚師，王子有一些心得..."
+
+msgid "Cook Now"
+msgstr "立即烹飪"
+
+msgid "Credit / Debit Card"
+msgstr "信用卡 / 扣帳卡"
+
+msgid "Please upload payment proof (receipt)"
+msgstr "請上傳付款證明 (收據)"
+
+msgid "Cardholder Name"
+msgstr "持卡人姓名"
+
+msgid "e.g. CHEN TAI MAN"
+msgstr "例如: CHEN TAI MAN"
+
+msgid "Card Number"
+msgstr "卡號"
+
+msgid "Expiry Date"
+msgstr "到期日"
+
+msgid "CVC"
+msgstr "驗證碼 (CVC)"
+
+msgid "Credit card payment is currently unavailable."
+msgstr "信用卡付款目前無法使用。"
+
+msgid "Error Details:"
+msgstr "錯誤詳情:"
+
+msgid "Reload page to retry"
+msgstr "重新載入頁面重試"
+
+msgid ""
+"(System configuration error or missing keys). Please choose another payment "
+"method or contact support."
+msgstr "(系統設定錯誤或金鑰缺失)。請選擇其他付款方式或聯絡支援。"
+
+msgid ""
+"Please add more items to use credit card payment, or choose another payment "
+"method."
+msgstr "請增加更多商品以使用信用卡付款，或選擇其他付款方式。"
+
+msgid "Coupon:"
+msgstr "優惠券:"
+
+msgid "Coupon code"
+msgstr "優惠券代碼"
+
+msgid "Shop"
+msgstr "商店"
+
+msgid "Default Sorting"
+msgstr "預設排序"
+
+msgid "Price: Low to High"
+msgstr "價格：低到高"
+
+msgid "Price: High to Low"
+msgstr "價格：高到低"
+
+msgid "Show per page:"
+msgstr "每頁顯示："
+
+msgid "All Products"
+msgstr "所有產品"
+
+msgid "Add to Wishlist"
+msgstr "加入我的最愛"
+
+msgid "No Image"
+msgstr "暫無圖片"
+
+msgid "No products available."
+msgstr "暫無產品。"
+
+msgid "Previous"
+msgstr "上一頁"
+
+msgid "Next"
+msgstr "下一頁"
+
+msgid "Extraordinary in the Ordinary"
+msgstr "平凡中的不平凡"
+
+msgid "Join Prince's culinary journey and enjoy the beautiful things in life!"
+msgstr "加入王子的烹飪之旅，享受生活中的美好事物！"
+
+msgid "Learn More"
+msgstr "了解更多"
+
+msgid "Discover More"
+msgstr "探索更多"
+
+msgid "See the wider world through Prince's eyes..."
+msgstr "透過王子的眼睛看更廣闊的世界..."
+
+msgid "Customer"
+msgstr "客戶"
+
+msgid "Customers"
+msgstr "客戶"
+
+msgid "User Profile"
+msgstr "使用者資料"
+
+msgid "User Profiles"
+msgstr "使用者資料"
+
+msgid "Category"
+msgstr "分類"
+
+msgid "Products"
+msgstr "產品"
+
+msgid "Product Image"
+msgstr "產品圖片"
+
+msgid "Product Images"
+msgstr "產品圖片"
+
+msgid "Page"
+msgstr "頁面"
+
+msgid "Pages"
+msgstr "頁面"
+
+msgid "Payment Methods"
+msgstr "付款方式"
+
+msgid "Coupon"
+msgstr "優惠券"
+
+msgid "Coupons"
+msgstr "優惠券"
+
+msgid "Order"
+msgstr "訂單"
+
+msgid "Orders"
+msgstr "訂單"
+
+msgid "Order Item"
+msgstr "訂單項目"
+
+msgid "Order Items"
+msgstr "訂單項目"
+
+msgid "Order Note"
+msgstr "訂單備註"
+
+msgid "Order Notes"
+msgstr "訂單備註"
+
+msgid "Site Settings"
+msgstr "網站設定"
+
+msgid "Hero Slide"
+msgstr "首頁輪播圖"
+
+msgid "Hero Slides"
+msgstr "首頁輪播圖"
+
+msgid "Sales Dashboard"
+msgstr "銷售儀表板"
+
+msgid "SKU"
+msgstr "貨號"
+
+msgid "Discount Price"
+msgstr "折扣價格"
+
+msgid "Stock"
+msgstr "庫存"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Specifications"
+msgstr "規格"
+
+msgid "Image"
+msgstr "圖片"
+
+msgid "Image URL"
+msgstr "圖片網址"
+
+msgid "Active"
+msgstr "啟用"
+
+msgid "Created At"
+msgstr "建立時間"
+
+msgid "Updated At"
+msgstr "更新時間"
+
+msgid "Sort Order"
+msgstr "排序"
+
+msgid "Caption"
+msgstr "標題"
+
+msgid "Title"
+msgstr "標題"
+
+msgid "Subtitle"
+msgstr "副標題"
+
+msgid "Content"
+msgstr "內容"
+
+msgid "Code"
+msgstr "代碼"
+
+msgid "Instructions"
+msgstr "說明"
+
+msgid "Requires Proof"
+msgstr "需要證明"
+
+msgid "Discount Type"
+msgstr "折扣類型"
+
+msgid "Discount Value"
+msgstr "折扣值"
+
+msgid "Valid From"
+msgstr "生效日期"
+
+msgid "Valid To"
+msgstr "失效日期"
+
+msgid "Order Number"
+msgstr "訂單編號"
+
+msgid "User Account"
+msgstr "使用者帳號"
+
+msgid "Customer Name"
+msgstr "客戶名稱"
+
+msgid "Payment Proof"
+msgstr "付款證明"
+
+msgid "Discount Amount"
+msgstr "折扣金額"
+
+msgid "Status"
+msgstr "狀態"
+
+msgid "Total Amount"
+msgstr "總金額"
+
+msgid "Unit Price"
+msgstr "單價"
+
+msgid "Sent to Customer"
+msgstr "發送給客戶"
+
+msgid "Site Name"
+msgstr "網站名稱"
+
+msgid "Logo"
+msgstr "標誌"
+
+msgid "Hero Banner"
+msgstr "首頁橫幅"
+
+msgid "Hero Title"
+msgstr "首頁標題"
+
+msgid "Hero Subtitle"
+msgstr "首頁副標題"
+
+msgid "Hero Button Text"
+msgstr "首頁按鈕文字"
+
+msgid "Hero Link"
+msgstr "首頁連結"
+
+msgid "Feature Title"
+msgstr "特色區塊標題"
+
+msgid "Feature Subtitle"
+msgstr "特色區塊副標題"
+
+msgid "Feature Image"
+msgstr "特色區塊圖片"
+
+msgid "Founder Image"
+msgstr "創辦人照片"
+
+msgid "Founder Name"
+msgstr "創辦人姓名"
+
+msgid "Founder Intro Title"
+msgstr "創辦人介紹標題"
+
+msgid "Founder Intro Text"
+msgstr "創辦人介紹文字"
+
+msgid "Contact Phone"
+msgstr "聯絡電話"
+
+msgid "Contact Email"
+msgstr "聯絡電郵"
+
+msgid "Contact Address"
+msgstr "聯絡地址"
+
+msgid "Footer About"
+msgstr "頁尾關於我們"
+
+msgid "Footer Copyright"
+msgstr "頁尾版權聲明"
+
+msgid "SMTP Host"
+msgstr "SMTP 主機"
+
+msgid "SMTP Port"
+msgstr "SMTP 連接埠"
+
+msgid "SMTP User"
+msgstr "SMTP 使用者"
+
+msgid "SMTP Password"
+msgstr "SMTP 密碼"
+
+msgid "Use TLS"
+msgstr "使用 TLS"
+
+msgid "From Email"
+msgstr "寄件者電郵"
+
+msgid "Menu Home Text"
+msgstr "選單主頁文字"
+
+msgid "Menu Store Text"
+msgstr "選單商店文字"
+
+msgid "Menu About Text"
+msgstr "選單關於我們文字"
+
+msgid "Menu Blog Text"
+msgstr "選單博客文字"
+
+msgid "Menu Contact Text"
+msgstr "選單聯絡我們文字"
+
+msgid "Menu Tutorial Text"
+msgstr "選單教學文字"
+
+msgid "Menu Tutorial Link"
+msgstr "選單教學連結"
+
+msgid "Top Bar Bg Color"
+msgstr "頂部欄背景色"
+
+msgid "Navbar Bg Color"
+msgstr "導覽列背景色"
+
+msgid "Navbar Text Color"
+msgstr "導覽列文字色"
+
+msgid "Navbar Items"
+msgstr "導覽列項目"
+
+msgid "Product Label Bg Color"
+msgstr "產品標籤背景色"
+
+msgid "Product Label Text Color"
+msgstr "產品標籤文字色"
+
+msgid "Percentage"
+msgstr "百分比"
+
+msgid "Fixed Amount"
+msgstr "固定金額"
+
+msgid "Created"
+msgstr "已建立"
+
+msgid "Paid"
+msgstr "已付款"
+
+msgid "Fulfilling"
+msgstr "備貨中"
+
+msgid "Partially Shipped"
+msgstr "部分出貨"
+
+msgid "Shipped"
+msgstr "已出貨"
+
+msgid "Completed"
+msgstr "已完成"
+
+msgid "Canceled"
+msgstr "已取消"
+
+msgid "Returned"
+msgstr "已退貨"
+
+msgid "Refunded"
+msgstr "已退款"
+
+msgid "Category Name"
+msgstr "分類名稱"
+
+msgid "Slug"
+msgstr "代稱 (Slug)"
+
+msgid "Product Name"
+msgstr "商品名稱"
+
+msgid "User"
+msgstr "使用者"
+
+msgid "Message"
+msgstr "訊息"
+
+msgid "Product Data"
+msgstr "產品資料"
+
+msgid "Price & Stock"
+msgstr "價格與庫存"
+
+msgid "Categories & Tags"
+msgstr "分類與標籤"
+
+msgid "Images"
+msgstr "圖片"
+
+msgid ""
+"Upload an image or enter an image URL (choose one). If both are provided, "
+"the uploaded image will be displayed first."
+msgstr "上傳圖片或輸入圖片網址 (擇一)。如果兩者都提供，將優先顯示上傳的圖片。"
+
+msgid "Preview"
+msgstr "預覽"
+
+msgid "Shipping Address"
+msgstr "運送地址"
+
+msgid "Duplicate selected products"
+msgstr "複製選定的產品"
+
+msgid "Download Import Template"
+msgstr "下載匯入範本"
+
+msgid "Batch Upload Product Images (ZIP)"
+msgstr "批次上傳產品圖片 (ZIP)"
+
+msgid "Basic Settings"
+msgstr "基本設定"
+
+msgid "Home Banner Settings"
+msgstr "首頁橫幅設定"
+
+msgid "Feature Section (Middle)"
+msgstr "特色區塊 (中間)"
+
+msgid "Founder Section (About Us)"
+msgstr "創辦人區塊 (關於我們)"
+
+msgid "Contact Info (Footer)"
+msgstr "聯絡資訊 (頁尾)"
+
+msgid "Social Media"
+msgstr "社群媒體"
+
+msgid "Appearance Settings (Menu & Labels)"
+msgstr "外觀設定 (選單與標籤)"
+
+msgid "Main Menu Text Settings"
+msgstr "主選單文字設定"
+
+msgid "Tracking Codes"
+msgstr "追蹤代碼"
+
+msgid "Email Settings (SMTP)"
+msgstr "電子郵件設定 (SMTP)"
+
+msgid ""
+"Configure SMTP server settings for sending system emails (e.g., password "
+"reset)."
+msgstr "設定發送系統郵件 (如密碼重設) 的 SMTP 伺服器。"
+
+msgid "Stock Status"
+msgstr "庫存狀態"
+
+msgid "Year"
+msgstr "今年"
+
+msgid "Last Month"
+msgstr "上個月"
+
+msgid "This Month"
+msgstr "本月"
+
+msgid "Last 7 Days"
+msgstr "過去 7 天"
+
+msgid "Custom:"
+msgstr "自訂範圍:"
+
+msgid "Query"
+msgstr "查詢"
+
+msgid "Export CSV"
+msgstr "匯出 CSV"
+
+msgid "Total Revenue"
+msgstr "總營收"
+
+msgid "Total Orders"
+msgstr "總訂單數"
+
+msgid "Average Order Value (AOV)"
+msgstr "平均客單價 (AOV)"
+
+msgid "Sales Trend Chart"
+msgstr "銷售趨勢圖"
+
+msgid "Top 10 Selling Products"
+msgstr "熱銷商品 TOP 10"
+
+msgid "Quantity Sold"
+msgstr "銷量"
+
+msgid "Revenue"
+msgstr "銷售額"
+
+msgid "Top 10 Selling Categories"
+msgstr "熱銷分類 TOP 10"
+
+msgid "Daily Sales Report"
+msgstr "每日銷售明細表"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Average Price"
+msgstr "平均單價"
+
+msgid "No data available"
+msgstr "尚無資料"
+
+msgid "Data Error: Product Name is required, please check Excel content."
+msgstr "資料錯誤：產品名稱為必填，請檢查 Excel 內容。"
+
+msgid "Order History"
+msgstr "訂單記錄"
+
+msgid "Profile"
+msgstr "個人資料"
+
+msgid "Change Password"
+msgstr "更改密碼"
+
+msgid "My Orders"
+msgstr "我的訂單"
+
+msgid "You have no orders yet."
+msgstr "您尚未有任何訂單。"
+
+msgid "Shop Now"
+msgstr "立即購物"
+
+msgid "Action"
+msgstr "操作"
+
+msgid "Username cannot be changed."
+msgstr "使用者名稱無法更改。"
+
+msgid "Save Changes"
+msgstr "儲存變更"
+
+msgid "Data Error: Price is required, please check Excel content."
+msgstr "資料錯誤：價格為必填，請檢查 Excel 內容。"
+
+msgid ""
+"Your personal data will be used to process your order, support your "
+"experience throughout this website, and for other purposes described in our "
+"privacy policy."
+msgstr "您的個人資料將用於處理您的訂單，支援您在本網站的使用體驗，以及我們的隱私權政策中描述的其他用途。"
+
+msgid ""
+"Your personal data will be used to process your order, support your "
+"experience throughout this website, and for other purposes described in our"
+msgstr "您的個人資料將用於處理您的訂單，支援您在本網站的使用體驗，以及我們的隱私權政策中描述的其他用途，詳見我們的"
+
+msgid "privacy policy"
+msgstr "隱私權政策"
+
+msgid "Privacy Policy"
+msgstr "隱私權政策"
+
+msgid "Terms & Conditions"
+msgstr "條款與細則"
+
+msgid "I have read and agree to the website"
+msgstr "我已閱讀並同意網站的"
+
+msgid "terms and conditions"
+msgstr "條款與細則"
+
+msgid "Add to Cart"
+msgstr "加入購物車"
+
+msgid "Category:"
+msgstr "分類:"
+
+msgid "Your wishlist is empty."
+msgstr "您的願望清單是空的。"
+
+msgid "Order Details"
+msgstr "訂單詳情"
+
+msgid "Back to My Account"
+msgstr "返回我的帳戶"
+
+msgid "Order Notes & History"
+msgstr "訂單備註與記錄"
+
+msgid "Order Info"
+msgstr "訂單資訊"
+
+msgid "Order Date"
+msgstr "訂單日期"
+
+msgid "Not Specified"
+msgstr "未指定"
+
+msgid "Shipping Info"
+msgstr "運送資訊"
+
+msgid "Payment Proof Required"
+msgstr "需要付款證明"
+
+msgid "Please upload payment proof to complete order."
+msgstr "請上傳付款證明以完成訂單。"
+
+msgid "Save payment information to my account for future purchases."
+msgstr "儲存付款資訊到我的帳戶以便日後購物。"
+
+msgid "No payment methods available, please contact administrator."
+msgstr "沒有可用的付款方式，請聯絡管理員。"
+
+msgid "Credit card payment failed, please try again later"
+msgstr "信用卡付款失敗，請稍後再試"
+
+msgid "Payment not completed, please try again"
+msgstr "付款未完成，請再試一次"
+
+msgid "Invoice"
+msgstr "發票"
+
+msgid "INVOICE"
+msgstr "發票"
+
+msgid "Tel"
+msgstr "電話"
+
+msgid "Order #"
+msgstr "訂單編號"
+
+msgid "Bill To"
+msgstr "帳單地址"
+
+msgid "Item"
+msgstr "項目"
+
+msgid "Unit Cost"
+msgstr "單價"
+
+msgid "Qty"
+msgstr "數量"
+
+msgid "Print Invoice"
+msgstr "列印發票"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Account Locked"
+msgstr "帳戶已鎖定"
+
+msgid ""
+"Your account has been temporarily locked due to multiple failed login "
+"attempts."
+msgstr "由於多次登入失敗，您的帳戶已被暫時鎖定。"
+
+msgid "Please try again later or contact the administrator."
+msgstr "請稍後再試或聯絡管理員。"
+
+msgid "Back to Home"
+msgstr "返回首頁"
+
+msgid "Order Completed"
+msgstr "訂單已完成"
+
+msgid "Thank you for your order"
+msgstr "感謝您的訂購"
+
+msgid "Order Number:"
+msgstr "訂單編號:"
+
+msgid "Status:"
+msgstr "狀態:"
+
+msgid "Back to Store"
+msgstr "返回商店"
+
+msgid "View My Orders"
+msgstr "查看我的訂單"
+
+msgid "View Order in Admin"
+msgstr "在後台查看訂單"
+
+msgid "7-Day Return Guarantee"
+msgstr "7天退貨保證"
+
+msgid "HOME / RESET PASSWORD"
+msgstr "主頁 / 重設密碼"
+
+msgid "Forgot Password?"
+msgstr "忘記密碼？"
+
+msgid "Reset Password"
+msgstr "重設密碼"
+
+msgid ""
+"Please enter your username or email address. You will receive a link to "
+"create a new password via email."
+msgstr "請輸入您的使用者名稱或電子郵件地址。您將收到一封包含重設密碼連結的電子郵件。"
+
+msgid ""
+"Error: SKU '%(sku)s' already exists in another product, please ensure SKU is"
+" unique."
+msgstr "錯誤：貨號 '%(sku)s' 已存在於其他產品中，請確保貨號唯一。"
+
+msgid "Created %(created)d images, updated %(updated)d products"
+msgstr "已建立 %(created)d 張圖片，更新 %(updated)d 個產品"
+
+msgid "General"
+msgstr "一般資訊"
+
+msgid "Billing"
+msgstr "帳單資訊"
+
+msgid "Customer History"
+msgstr "客戶歷史紀錄"
+
+msgid "Order Actions"
+msgstr "訂單操作"
+
+msgid "by"
+msgstr "由"
+
+msgid "System"
+msgstr "系統"
+
+msgid "(Sent to Customer)"
+msgstr "(已發送給客戶)"
+
+msgid "Delete Note"
+msgstr "刪除備註"
+
+msgid "Are you sure?"
+msgstr "您確定嗎？"
+
+msgid "No notes yet"
+msgstr "尚無備註"
+
+msgid "Add Note"
+msgstr "新增備註"
+
+msgid "Enter note..."
+msgstr "輸入備註..."
+
+msgid "Send to Customer"
+msgstr "發送給客戶"
+
+msgid "Add"
+msgstr "新增"
+
+msgid "Please correct the error below."
+msgstr "請修正以下錯誤。"
+
+msgid "Please correct the errors below."
+msgstr "請修正以下錯誤。"
+
+msgid "Get Price"
+msgstr "取得價格"
+
+msgid "Unable to get price: "
+msgstr "無法取得價格："
+
+msgid "Connection failed, unable to get price."
+msgstr "連線失敗，無法取得價格。"
+
+msgid "Please check network or server logs."
+msgstr "請檢查網路或伺服器日誌。"
+
+msgid "Unable to detect Product ID (Please select a product first)."
+msgstr "無法偵測產品 ID (請先選擇產品)。"
+
+msgid "Backup Manager"
+msgstr "備份管理"
+
+msgid "+ Create New Backup"
+msgstr "+ 建立新備份"
+
+msgid "File Name"
+msgstr "檔案名稱"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Restore"
+msgstr "還原"
+
+msgid "Delete"
+msgstr "刪除"
+
+msgid ""
+"Are you sure you want to restore this backup? Current data will be replaced."
+msgstr "您確定要還原此備份嗎？目前的資料將被取代。"
+
+msgid "Are you sure you want to delete this backup?"
+msgstr "您確定要刪除此備份嗎？"
+
+msgid "No backups found."
+msgstr "找不到備份。"

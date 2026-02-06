@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load static i18n %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/png">
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/png">
+{% endblock %}
+
+{% block footer %}
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>{% trans "Jazzmin Version" %}</b> 3.0.1
+    </div>
+    <strong>{% trans "Copyright" %} &copy; 2024 {{ jazzmin_settings.copyright }}</strong> {% trans "All rights reserved." %}
+</footer>
+{% endblock %}

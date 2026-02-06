@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Register" %} - GWZ{% endblock %}
+
+{% block content %}
+<!-- Page Title Banner -->
+<div class="bg-black text-white py-4 mb-5">
+    <div class="container text-center">
+        <h1 class="h2 fw-bold mb-1">{% trans "Register Account" %}</h1>
+        <p class="small text-uppercase mb-0 text-white-50">{% trans "Home" %} / {% trans "Register" %}</p>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="fw-bold mb-4">{% trans "Register New Account" %}</h3>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-danger w-100 fw-bold py-2">{% trans "Register" %}</button>
+            </form>
+            <div class="mt-3 text-center">
+                <p>{% trans "Already have an account?" %} <a href="{% url 'login' %}" class="text-danger">{% trans "Log In Now" %}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom style to make form inputs match the theme */
+    input[type="text"], input[type="email"], input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>
+{% endblock %}

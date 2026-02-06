@@ -1,0 +1,421 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Home" %} - GWZ{% endblock %}
+
+{% block content %}
+<style>
+    .hero-image {
+        object-fit: cover;
+        max-height: 700px;
+    }
+    .feature-card .card-img-top {
+        height: 240px;
+        object-fit: cover;
+    }
+    .feature-card .card-body {
+        padding: 1.25rem;
+    }
+    .feature-card .card-title {
+        font-size: 1.2rem;
+    }
+    .feature-card .card-text {
+        min-height: 48px;
+        color: #666;
+    }
+    .feature-card .btn {
+        padding: 0.4rem 1rem;
+    }
+    @media (max-width: 768px) {
+        .hero-image {
+            max-height: 300px !important;
+        }
+        .feature-card .card-img-top {
+            height: 180px;
+        }
+    }
+</style>
+<!-- Hero Section -->
+{% if is_shop_page %}
+<!-- Shop Page Header (Black Background with Categories) -->
+<section class="shop-header mb-5" style="background-color: #000; color: #fff; padding: 20px 0;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold m-0">{% if site_settings.menu_store_text %}{{ site_settings.menu_store_text }}{% else %}{% trans "Store" %}{% endif %}</h1>
+    </div>
+</section>
+{% else %}
+<!-- Home Page Hero Banner -->
+<section class="hero-section mb-5 position-relative">
+  
+  <!-- Banner Carousel -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      {% for slide in hero_slides %}
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for slide in hero_slides %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% if slide.link %}
+                <a href="{{ slide.link }}">
+                    {% if slide.image %}
+                    <img src="{{ slide.image.url }}" class="d-block w-100 hero-image" alt="{{ slide.title }}">
+                    {% else %}
+                    <img src="https://placehold.co/1980x700/cccccc/666666?text={{ slide.title|default:'GWZ' }}" class="d-block w-100 hero-image" alt="{{ slide.title }}">
+                    {% endif %}
+                </a>
+            {% else %}
+                {% if slide.image %}
+                <img src="{{ slide.image.url }}" class="d-block w-100 hero-image" alt="{{ slide.title }}">
+                {% else %}
+                <img src="https://placehold.co/1980x700/5D2E86/FFD700?text={{ slide.title|default:'GWZ' }}" class="d-block w-100 hero-image" alt="{{ slide.title }}">
+                {% endif %}
+            {% endif %}
+            <div class="carousel-caption d-none d-md-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
+                <h2 class="fw-bold text-warning">{{ slide.title }}</h2>
+                <p class="fs-5">{{ slide.subtitle }}</p>
+            </div>
+        </div>
+      {% empty %}
+        <!-- Fallback to SiteSettings Banner if no slides -->
+        <div class="carousel-item active">
+            {% if site_settings.hero_banner %}
+            <img src="{{ site_settings.hero_banner.url }}" class="hero-banner-img w-100 hero-image" alt="Hero Banner">
+            {% else %}
+            <img src="https://placehold.co/1980x700/cccccc/666666?text=Welcome+to+GWZ" class="hero-banner-img w-100 hero-image" alt="Hero Banner">
+            {% endif %}
+            <div class="carousel-caption d-none d-md-block" style="background: rgba(93, 46, 134, 0.7); border-radius: 10px; padding: 20px;">
+                <h2 class="fw-bold text-warning">{{ site_settings.hero_title }}</h2>
+                <p class="fs-5">{{ site_settings.hero_subtitle }}</p>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% if hero_slides|length > 1 %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    {% endif %}
+  </div>
+</section>
+
+<!-- GWZ Custom Sections (Intro & Features) -->
+<section class="gwz-intro text-center mb-5 container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="fw-bold mb-3" style="color: var(--primary-purple);">{% if site_settings.founder_intro_title %}{{ site_settings.founder_intro_title }}{% else %}{% trans "Extraordinary in the Ordinary" %}{% endif %}</h2>
+            <p class="lead">{% if site_settings.founder_intro_text %}{{ site_settings.founder_intro_text }}{% else %}{% trans "Join Prince's culinary journey and enjoy the beautiful things in life!" %}{% endif %}</p>
+        </div>
+    </div>
+</section>
+
+<section class="gwz-features container mb-5">
+    <!-- Row 1: Top 3 Items -->
+    <div class="row g-4 mb-5">
+        <!-- Item 1: Featured Blog -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'Featured Blog' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "Featured Blog" %}</h3>
+                    <p class="card-text mb-4">{% trans "Get inspiration from Prince's recipes and cooking videos" %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'featured' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Read More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2: Blog -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'Blog' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "Blog" %}</h3>
+                    <p class="card-text mb-4">{% trans "Explore home cooking and recipes with Prince" %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'blog' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Read More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 3: Food Review -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'Food Review' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "Food Review" %}</h3>
+                    <p class="card-text mb-4">{% trans "Like other food lovers, Prince loves trying new food..." %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'food-review' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Explore More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Text (Banner) -->
+    <div class="row mb-5">
+        <div class="col-12 text-center bg-light p-5 rounded">
+            {% if site_settings.feature_image %}
+            <img src="{{ site_settings.feature_image.url }}" class="img-fluid rounded mb-4 shadow-sm" alt="{{ site_settings.feature_title }}" style="max-height: 500px; object-fit: cover;">
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&w=1200&h=500" class="img-fluid rounded mb-4 shadow-sm" alt="{% if site_settings.feature_title %}{{ site_settings.feature_title }}{% else %}GWZ{% endif %}" style="max-height: 500px; object-fit: cover; width: 100%;">
+            {% endif %}
+            <h3 class="fw-bold mb-3" style="color: var(--primary-purple);">{{ site_settings.feature_title }}</h3>
+            <p class="fs-5 mb-0">{{ site_settings.feature_subtitle }}</p>
+        </div>
+    </div>
+
+    <!-- Row 2: Bottom 3 Items -->
+    <div class="row g-4">
+        <!-- Item 4: New Recipes -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'New Recipes' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "New Recipes" %}</h3>
+                    <p class="card-text mb-4">{% trans "As a self-taught home cook, Prince has some tips..." %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'recipes' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Cook Now" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 5: Featured Products -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'Featured Products' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "Featured Products" %}</h3>
+                    <p class="card-text mb-4">{% trans "Prince has created a variety of seasonings to make your dishes flavorful." %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'products' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Learn More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 6: Lifestyle -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm text-center feature-card">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&h=400" class="card-img-top" alt="{% trans 'Lifestyle & Culture' %}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-purple); font-size: 1.5rem;">{% trans "Lifestyle & Culture" %}</h3>
+                    <p class="card-text mb-4">{% trans "See the wider world through Prince's eyes..." %}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'page_detail' 'lifestyle' %}" class="btn btn-outline-dark rounded-pill px-4 stretched-link">{% trans "Discover More" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Product List -->
+<div class="container pb-5" id="shop-content">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 mb-4">
+       <div class="p-3 bg-light">
+          <h5 class="fw-bold mb-3">{% trans "Categories" %}</h5>
+          <ul class="list-unstyled">
+             <li class="mb-2"><a href="{% url 'product_list' %}#shop-content" class="text-decoration-none {% if not current_category %}fw-bold text-primary{% else %}text-dark{% endif %}">{% trans "All Products" %}</a></li>
+             {% for cat in categories %}
+             <li class="mb-2">
+                <a href="?category={{ cat.name }}#shop-content" class="d-flex justify-content-between align-items-center text-decoration-none {% if current_category == cat.name %}fw-bold text-primary{% else %}text-dark{% endif %}">
+                    <span>{{ cat.name }}</span>
+                    <span class="badge bg-light text-dark border flex-shrink-0 ms-2">{{ cat.count }}</span>
+                </a>
+             </li>
+             {% endfor %}
+          </ul>
+       </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <!-- Sorting Bar -->
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+          <div class="small text-muted">
+              {% trans "Home" %} / {% trans "Shop" %} {% if current_category %} / {{ current_category }} {% endif %}
+          </div>
+          <div class="d-flex align-items-center gap-3">
+              <span class="small">{% trans "Show per page:" %}
+                <a href="?per_page=9&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if per_page == 9 %}fw-bold text-dark{% else %}text-muted{% endif %}">9</a> / 
+                <a href="?per_page=12&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if per_page == 12 %}fw-bold text-dark{% else %}text-muted{% endif %}">12</a> / 
+                <a href="?per_page=18&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if per_page == 18 %}fw-bold text-dark{% else %}text-muted{% endif %}">18</a> / 
+                <a href="?per_page=24&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if per_page == 24 %}fw-bold text-dark{% else %}text-muted{% endif %}">24</a>
+              </span>
+
+              <div class="d-flex gap-2">
+                  <a href="?cols=2&per_page={{ per_page }}&sort={{ sort_by }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if grid_cols == '2' %}text-dark{% else %}text-muted{% endif %}" title="2 Columns">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="9" height="9" rx="1" />
+                        <rect x="13" y="2" width="9" height="9" rx="1" />
+                        <rect x="2" y="13" width="9" height="9" rx="1" />
+                        <rect x="13" y="13" width="9" height="9" rx="1" />
+                    </svg>
+                  </a>
+                  <a href="?cols=3&per_page={{ per_page }}&sort={{ sort_by }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if grid_cols == '3' or not grid_cols %}text-dark{% else %}text-muted{% endif %}" title="3 Columns">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="9.25" y="2" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="16.5" y="2" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="2" y="9.25" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="9.25" y="9.25" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="16.5" y="9.25" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="2" y="16.5" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="9.25" y="16.5" width="5.5" height="5.5" rx="0.5" />
+                        <rect x="16.5" y="16.5" width="5.5" height="5.5" rx="0.5" />
+                    </svg>
+                  </a>
+                  <a href="?cols=4&per_page={{ per_page }}&sort={{ sort_by }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" class="text-decoration-none {% if grid_cols == '4' %}text-dark{% else %}text-muted{% endif %}" title="4 Columns">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="4" height="4" rx="0.5" />
+                        <rect x="7.33" y="2" width="4" height="4" rx="0.5" />
+                        <rect x="12.66" y="2" width="4" height="4" rx="0.5" />
+                        <rect x="18" y="2" width="4" height="4" rx="0.5" />
+                        
+                        <rect x="2" y="7.33" width="4" height="4" rx="0.5" />
+                        <rect x="7.33" y="7.33" width="4" height="4" rx="0.5" />
+                        <rect x="12.66" y="7.33" width="4" height="4" rx="0.5" />
+                        <rect x="18" y="7.33" width="4" height="4" rx="0.5" />
+
+                        <rect x="2" y="12.66" width="4" height="4" rx="0.5" />
+                        <rect x="7.33" y="12.66" width="4" height="4" rx="0.5" />
+                        <rect x="12.66" y="12.66" width="4" height="4" rx="0.5" />
+                        <rect x="18" y="12.66" width="4" height="4" rx="0.5" />
+
+                        <rect x="2" y="18" width="4" height="4" rx="0.5" />
+                        <rect x="7.33" y="18" width="4" height="4" rx="0.5" />
+                        <rect x="12.66" y="18" width="4" height="4" rx="0.5" />
+                        <rect x="18" y="18" width="4" height="4" rx="0.5" />
+                    </svg>
+                  </a>
+              </div>
+
+              <div class="dropdown">
+                  <button class="btn btn-sm btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      {% if sort_by == 'price_low' %}{% trans "Price: Low to High" %}
+                      {% elif sort_by == 'price_high' %}{% trans "Price: High to Low" %}
+                      {% else %}{% trans "Default Sorting" %}{% endif %}
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a class="dropdown-item" href="?sort=default&per_page={{ per_page }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content">{% trans "Default Sorting" %}</a></li>
+                      <li><a class="dropdown-item" href="?sort=price_low&per_page={{ per_page }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content">{% trans "Price: Low to High" %}</a></li>
+                      <li><a class="dropdown-item" href="?sort=price_high&per_page={{ per_page }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content">{% trans "Price: High to Low" %}</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <div class="row g-4">
+        {% for p in products %}
+          <div class="col-12 {% if grid_cols == '2' %}col-md-6{% elif grid_cols == '4' %}col-md-3{% else %}col-md-4{% endif %}">
+            <div class="card h-100 border-0 shadow-sm product-card">
+              <div class="position-relative">
+                  <!-- Wishlist Button -->
+                  <button class="btn btn-sm btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow-sm wishlist-btn" 
+                          data-product-id="{{ p.id }}" 
+                          title="{% trans 'Add to Wishlist' %}"
+                          style="width: 32px; height: 32px; padding: 0; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                      <i class="{% if p.id in wishlist_product_ids %}fas{% else %}far{% endif %} fa-heart text-danger"></i>
+                  </button>
+
+                  {% if p.image %}
+                    <img src="{{ p.image.url }}" class="card-img-top p-4" alt="{{ p.name }}" style="height: 220px; object-fit: contain;">
+                  {% elif p.image_url %}
+                    <img src="{{ p.image_url }}" class="card-img-top p-4" alt="{{ p.name }}" style="height: 220px; object-fit: contain;">
+                  {% else %}
+                    <img src="https://placehold.co/200x200?text={% trans 'No Image' %}" class="card-img-top p-4" alt="{% trans 'No Image' %}">
+                  {% endif %}
+                  
+                  <!-- Blue/Black Label Removed -->
+              </div>
+
+              <div class="card-body text-center">
+                <h6 class="card-title text-truncate mb-2" style="font-size: 0.9rem;">{{ p.name }}</h6>
+                <div class="mb-3">
+                  {% if p.discount_price %}
+                    <span class="text-danger fw-bold">HK${{ p.discount_price }}</span>
+                    <span class="text-muted text-decoration-line-through ms-2" style="font-size: 0.85em;">HK${{ p.price }}</span>
+                  {% else %}
+                    <span class="fw-bold">HK${{ p.price }}</span>
+                  {% endif %}
+                </div>
+                <a href="{% url 'product_detail' p.slug %}" class="btn btn-outline-dark btn-sm rounded-0 w-100">{% trans "Add to Cart" %}</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-12 text-center py-5">
+            <p class="text-muted">{% trans "No products available." %}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if products.has_other_pages %}
+      <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+          {% if products.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ products.previous_page_number }}&per_page={{ per_page }}&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+          </li>
+          {% endif %}
+
+          {% for i in custom_page_range %}
+            {% if i == products.paginator.ELLIPSIS %}
+            <li class="page-item disabled"><span class="page-link">{{ i }}</span></li>
+            {% elif products.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}&per_page={{ per_page }}&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ products.next_page_number }}&per_page={{ per_page }}&sort={{ sort_by }}&cols={{ grid_cols }}{% if current_category %}&category={{ current_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}#shop-content" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&raquo;</span>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

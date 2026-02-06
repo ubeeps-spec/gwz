@@ -1,0 +1,474 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-02 10:46+0800\n"
+"PO-Revision-Date: 2026-02-02 10:48+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Traditional Chinese"
+msgstr "ç¹é«ä¸­æ"
+
+msgid "English"
+msgstr "è±æ"
+
+msgid "Welcome Call 66208132"
+msgstr "æ­¡è¿è´é» 66208132 è¨è³¼"
+
+msgid "Logout"
+msgstr "ç»åº"
+
+msgid "Search for products"
+msgstr "æå°ç¢å"
+
+msgid "Search products"
+msgstr "æå°ç¢å"
+
+msgid "All Categories"
+msgstr "ææåé¡"
+
+msgid "Menu"
+msgstr "é¸å®"
+
+msgid "Home"
+msgstr "ä¸»é "
+
+msgid "Store"
+msgstr "ååº"
+
+msgid "Blog"
+msgstr "åå®¢"
+
+msgid "Contact"
+msgstr "è¯çµ¡æå"
+
+msgid "Contact Us"
+msgstr "è¯çµ¡æå"
+
+msgid "Tutorial"
+msgstr "è³¼ç©æµç¨æå­¸"
+
+msgid "Categories"
+msgstr "åååé¡"
+
+msgid "Shopping cart"
+msgstr "è³¼ç©è»"
+
+msgid "Shopping Cart"
+msgstr "è³¼ç©è»"
+
+msgid "Your cart is empty."
+msgstr "æ¨çè³¼ç©è»æ¯ç©ºçã"
+
+msgid "Start Shopping"
+msgstr "éå§è³¼ç©"
+
+msgid "Subtotal:"
+msgstr "å°è¨ï¼"
+
+msgid "View Cart"
+msgstr "æ¥çè³¼ç©è»"
+
+msgid "Checkout"
+msgstr "çµå¸³"
+
+msgid "Login"
+msgstr "ç»å¥"
+
+msgid "Register"
+msgstr "è¨»å"
+
+msgid "My Account"
+msgstr "æçå¸³æ¶"
+
+msgid "Account"
+msgstr "å¸³æ¶"
+
+msgid "Username or email address"
+msgstr "ç¨æ¶åç¨±æé»å­éµä»¶å°å"
+
+msgid "Password"
+msgstr "å¯ç¢¼"
+
+msgid "Remember me"
+msgstr "è¨ä½æ"
+
+msgid "Lost your password?"
+msgstr "å¿è¨å¯ç¢¼ï¼"
+
+msgid "Add to cart"
+msgstr "å å¥è³¼ç©è»"
+
+msgid "Pick your favorite"
+msgstr "ç²¾é¸åå"
+
+msgid "High quality"
+msgstr "é«åè³ª"
+
+msgid "Quick Links"
+msgstr "å¿«éé£çµ"
+
+msgid "About Us"
+msgstr "éæ¼æå"
+
+msgid "Latest Products"
+msgstr "ææ°ç¢å"
+
+msgid "Contact Info"
+msgstr "è¯çµ¡è³è¨"
+
+msgid "Follow Us"
+msgstr "éæ³¨æå"
+
+msgid "Language"
+msgstr "èªè¨"
+
+msgid "Username"
+msgstr "ä½¿ç¨èåç¨±"
+
+msgid "Email"
+msgstr "é»å­éµä»¶"
+
+msgid "Phone"
+msgstr "é»è©±"
+
+msgid "Address"
+msgstr "å°å"
+
+msgid "First Name"
+msgstr "åå­"
+
+msgid "Last Name"
+msgstr "å§æ°"
+
+msgid "User Name"
+msgstr "ä½¿ç¨èåç¨±"
+
+msgid "This email is already registered"
+msgstr "æ­¤é»å­éµä»¶å·²è¢«è¨»å"
+
+msgid "Log In"
+msgstr "ç»å¥"
+
+msgid "Username or Email"
+msgstr "ä½¿ç¨èåç¨±æé»å­éµä»¶"
+
+msgid "Registering for this site allows you to access your order status and history. Just fill in the fields below, and we'll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier."
+msgstr "è¨»åæ­¤ç¶²ç«å¯è®æ¨å­åæ¨çè¨å®çæåæ­·å²è¨éãåªéå¡«å¯«ä¸é¢çå­æ®µï¼æåå°±æç«å³çºæ¨è¨­å®ä¸åæ°å¸³æ¶ãæååªæè¦æ±æ¨æä¾å¿è¦çä¿¡æ¯ï¼ä»¥ä¾¿è³¼è²·éç¨æ´å¿«ãæ´è¼é¬ã"
+
+msgid "Specializing in sales of major brand printers and consumables, providing professional after-sales service and technical support."
+msgstr "å°çåå¤§åçæå°æ©åèæé·å®ï¼æä¾å°æ¥­å®å¾æåèæè¡æ¯æ´ã"
+
+msgid "123 Some Street, Some District, Kowloon, Hong Kong"
+msgstr "é¦æ¸¯ä¹é¾ææåææè¡123è"
+
+msgid "Register Account"
+msgstr "è¨»åå¸³è"
+
+msgid "Register New Account"
+msgstr "è¨»åæ°å¸³è"
+
+msgid "Already have an account?"
+msgstr "å·²ç¶æå¸³èï¼"
+
+msgid "Log In Now"
+msgstr "ç«å³ç»å¥"
+
+msgid "LOG IN"
+msgstr "ç»å¥"
+
+msgid "Product"
+msgstr "ç¢å"
+
+msgid "Price"
+msgstr "å¹æ ¼"
+
+msgid "Quantity"
+msgstr "æ¸é"
+
+msgid "Subtotal"
+msgstr "å°è¨"
+
+msgid "Total"
+msgstr "ç¸½è¨"
+
+msgid "Remove"
+msgstr "ç§»é¤"
+
+msgid "Continue Shopping"
+msgstr "ç¹¼çºè³¼ç©"
+
+msgid "Billing Details"
+msgstr "å¸³å®è³è¨"
+
+msgid "Company Name (Optional)"
+msgstr "å¬å¸åç¨± (é¸å¡«)"
+
+msgid "Country / Region"
+msgstr "åå®¶ / å°å"
+
+msgid "Hong Kong"
+msgstr "é¦æ¸¯"
+
+msgid "Street Address"
+msgstr "è¡éå°å"
+
+msgid "House number and street name"
+msgstr "éçèç¢¼åè¡éåç¨±"
+
+msgid "Apartment, suite, unit, etc. (optional)"
+msgstr "å¬å¯ãå¥æ¿ãå®ä½ç­ (é¸å¡«)"
+
+msgid "Town / City"
+msgstr "åé® / åå¸"
+
+msgid "District"
+msgstr "å°å"
+
+msgid "Kowloon"
+msgstr "ä¹é¾"
+
+msgid "Hong Kong Island"
+msgstr "é¦æ¸¯å³¶"
+
+msgid "New Territories"
+msgstr "æ°ç"
+
+msgid "Email Address"
+msgstr "é»å­éµä»¶å°å"
+
+msgid "Order Notes (Optional)"
+msgstr "è¨å®åè¨» (é¸å¡«)"
+
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "æ¨çè¨å®åè¨»ï¼ä¾å¦ééçç¹å¥æ³¨æäºé ã"
+
+msgid "Your Order"
+msgstr "æ¨çè¨å®"
+
+msgid "Shipping"
+msgstr "éè²»"
+
+msgid "Free Shipping"
+msgstr "åéè²»"
+
+msgid "Coupon Code"
+msgstr "åªæ ç¢¼"
+
+msgid "Apply"
+msgstr "å¥ç¨"
+
+msgid "Discount"
+msgstr "ææ£"
+
+msgid "Place Order"
+msgstr "ä¸è¨å®"
+
+msgid "Shopping Guide"
+msgstr "è³¼ç©æµç¨æå­¸"
+
+msgid "Select Item / Color / Quantity"
+msgstr "é¸æåå / é¡è² / æ¸é"
+
+msgid "Register as Member"
+msgstr "è¨»åæå¡"
+
+msgid "Get Latest Offers"
+msgstr "ç²åææ°åªæ "
+
+msgid "Shipping Method"
+msgstr "ééæ¹å¼"
+
+msgid "Pickup / Express / Mail"
+msgstr "èªå / å¿«é / éµå¯"
+
+msgid "Payment Method"
+msgstr "ä»æ¬¾æ¹å¼"
+
+msgid "Bank Transfer / PayMe / FPS"
+msgstr "éè¡è½å¸³ / PayMe / FPS"
+
+msgid "Receive Goods"
+msgstr "æ¶è²¨"
+
+msgid "Wishlist"
+msgstr "æçææ"
+
+msgid "Remove from Wishlist"
+msgstr "å¾æçææç§»é¤"
+
+msgid "View Details"
+msgstr "æ¥çè©³æ"
+
+msgid "Go Shopping"
+msgstr "å»è³¼ç©"
+
+msgid "Your wishlist is empty."
+msgstr "æ¨çé¡ææ¸å®æ¯ç©ºçã"
+
+msgid "Invoice"
+msgstr "ç¼ç¥¨"
+
+msgid "INVOICE"
+msgstr "ç¼ç¥¨"
+
+msgid "Tel"
+msgstr "é»è©±"
+
+msgid "Order #"
+msgstr "è¨å®ç·¨è"
+
+msgid "Date"
+msgstr "æ¥æ"
+
+msgid "Status"
+msgstr "çæ"
+
+msgid "Bill To"
+msgstr "å¸³å®å¯éè³"
+
+msgid "Item"
+msgstr "é ç®"
+
+msgid "Unit Cost"
+msgstr "å®å¹"
+
+msgid "Qty"
+msgstr "æ¸é"
+
+msgid "Print Invoice"
+msgstr "åå°ç¼ç¥¨"
+
+msgid "Back"
+msgstr "è¿å"
+
+msgid "Order Details"
+msgstr "è¨å®è©³æ"
+
+msgid "Back to My Account"
+msgstr "è¿åæçå¸³æ¶"
+
+msgid "Order Items"
+msgstr "è¨å®é ç®"
+
+msgid "Unit Price"
+msgstr "å®å¹"
+
+msgid "Order Notes & History"
+msgstr "è¨å®åè¨»èæ­·å²"
+
+msgid "Account Locked"
+msgstr "å¸³èå·²éå®"
+
+msgid "Your account has been temporarily locked due to multiple failed login attempts."
+msgstr "ç±æ¼å¤æ¬¡ç»å¥å¤±æï¼æ¨çå¸³èå·²è¢«æ«æéå®ã"
+
+msgid "Please try again later or contact the administrator."
+msgstr "è«ç¨å¾åè©¦æè¯çµ¡ç®¡çå¡ã"
+
+msgid "Back to Home"
+msgstr "è¿åé¦é "
+
+msgid "Extraordinary in the Ordinary"
+msgstr "å¹³å¡ä¸­è¦ä¸å¡"
+
+msgid "Join Prince's culinary journey and enjoy the beautiful things in life!"
+msgstr "å å¥çå­çç¾é£ä¹æï¼äº«åçæ´»ä¸­çç¾å¥½äºç©ï¼"
+
+msgid "Featured Blog"
+msgstr "ç²¾é¸åå®¢"
+
+msgid "Get inspiration from Prince's recipes and cooking videos"
+msgstr "å¾çå­çé£è­åç¹é£ªå½±çä¸­ç²å¾éæ"
+
+msgid "Read More"
+msgstr "é±è®æ´å¤"
+
+msgid "Explore home cooking and recipes with Prince"
+msgstr "èçå­ä¸èµ·æ¢ç´¢å®¶åº­ç¹é£ªåé£è­"
+
+msgid "Food Review"
+msgstr "ç¾é£è©è«"
+
+msgid "Like other food lovers, Prince loves trying new food..."
+msgstr "åå¶ä»ç¾é£æå¥½èä¸æ¨£ï¼çå­åæ­¡åè©¦æ°é£ç©..."
+
+msgid "Explore More"
+msgstr "æ¢ç´¢æ´å¤"
+
+msgid "New Recipes"
+msgstr "æ°é£è­"
+
+msgid "As a self-taught home cook, Prince has some tips..."
+msgstr "ä½çºä¸åèªå­¸ææçå®¶åº­å»å¸«ï¼çå­æä¸äºç§è¨£..."
+
+msgid "Cook Now"
+msgstr "ç«å³ç¹é£ª"
+
+msgid "Coupon code"
+msgstr "åªæ ç¢¼"
+
+msgid "Address:"
+msgstr "å°åï¼"
+
+msgid "Opening Hours:"
+msgstr "çæ¥­æéï¼"
+
+msgid "Enquiries:"
+msgstr "æ¥è©¢ï¼"
+
+msgid "Email:"
+msgstr "é»å­éµä»¶ï¼"
+
+msgid "Phone:"
+msgstr "é»è©±ï¼"
+
+msgid "Mon - Sun: 10:00AM - 10:00PM"
+msgstr "é±ä¸è³é±æ¥: 10:00AM - 10:00PM"
+
+
+
+msgid "Featured Products"
+msgstr "精選產品"
+
+msgid "Prince has created a variety of seasonings to make your dishes flavorful."
+msgstr "王子創造了各種調味料，讓您的菜餚更加美味。"
+
+msgid "Learn More"
+msgstr "了解更多"
+
+msgid "Lifestyle & Culture"
+msgstr "生活與文化"
+
+msgid "See the wider world through Prince's eyes..."
+msgstr "透過王子的眼睛看更廣闊的世界..."
+
+msgid "Discover More"
+msgstr "發現更多"
+
+msgid "Beyond cooking, we invite you to see the world through George's eyes, sharing his experiences in travel, shopping, and different cultures."
+msgstr "除了烹飪，我們邀請您透過 George 的眼睛看世界，分享他在旅行、購物和不同文化中的經歷。"
+
+msgid "Shop"
+msgstr "商店"
+
+msgid "Show per page:"
+msgstr "每頁顯示："
+
+msgid "Price: Low to High"
+msgstr "價格：低到高"
+
+msgid "Price: High to Low"
+msgstr "價格：高到低"
+
+msgid "Default Sorting"
+msgstr "預設排序"
+
+msgid "All Products"
+msgstr "所有產品"
